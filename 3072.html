@@ -1,0 +1,262 @@
+<!doctype html>
+<title>3072</title>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<style>
+    body {
+        font-family: Consolas, 'Times New Roman';
+        text-align: center;
+        background-color: #faf8ef;
+        font: fantasy;
+        font-style: bold
+    }
+
+    h1 {
+        font-size: 60px;
+        font-weight: bolder;
+        font-style: bold;
+        color: #766e66
+    }
+
+    hr {
+        width: 500px;
+        border: 3px solid #bcac9e
+    }
+
+    #board {
+        width: 350px;
+        height: 400px;
+        background-color: #ccc1b2;
+        border: 6px solid #bcac9e;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .tile {
+        border: 5px solid #bcac9e;
+        width: 40px;
+        height: 90px;
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .tileLess {
+        border: 5px solid #000;
+        width: 40px;
+        height: 90px;
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .t3 {
+        background-color: #ede4db;
+        color: #766e66
+    }
+
+    .t6 {
+        background-color: #ebdfc9;
+        color: #766e66
+    }
+
+    .t12 {
+        background-color: #e9b280;
+        color: #f9f6f2
+    }
+
+    .t24 {
+        background-color: #f59662;
+        color: #f9f6f2
+    }
+
+    .t48 {
+        background-color: #e68469;
+        color: #f9f6f2
+    }
+
+    .t96 {
+        background-color: #e46b4c;
+        color: #f9f6f2
+    }
+
+    .t192 {
+        background-color: #eacc79;
+        color: #f9f6f2
+    }
+
+    .t384 {
+        background-color: #edca64;
+        color: #f9f6f2
+    }
+
+    .t768 {
+        background-color: #e9c55b;
+        color: #f9f6f2
+    }
+
+    .t1536 {
+        background-color: #eec841;
+        color: #f9f6f2
+    }
+
+    .t3072 {
+        background-color: #e9c045;
+        color: #f9f6f2
+    }
+
+    .icons {
+        height: 30px;
+        width: 30px;
+        padding: 5px
+    }
+
+    button {
+        background-color: #fff
+    }
+</style>
+<script>
+let docTitle = document.title;
+window.addEventListener("blur", () => { document.title = "Rest time"; });
+window.addEventListener("focus", () => { document.title = docTitle; });
+var board;
+var rows = 4;
+var columns = 7;
+window.onload = function () { setGame(); }
+    function setGame() {
+        board = [[NaN, NaN, NaN, 0,   NaN, NaN, NaN],
+                 [NaN, NaN, 0,   0,   0,   NaN, NaN], 
+                 [NaN, 0,   0,   0,   0,   0,   NaN], 
+                 [0,   0,   0,   0,   0,   0,   0],  
+                 ]
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < columns; c++) {
+                let tile = document.createElement("div");
+                    tile.id = r.toString() + "-" + c.toString();
+                    let num = board[r][c];
+                    updateTile(tile, num);
+                    document.getElementById("board").append(tile);}
+        }
+        setTwo();
+        setTwo();
+        setTwo();
+    }
+    function updateTile(tile, num) {
+        tile.innerText = "";
+        tile.classList.value = "";
+        let r = tile[0];
+        let c = tile[tile.length-1];
+
+        if( (r == 0 &&  c ==3)|| 
+            (r == 1 && (c > 2 || c < 4 )) || 
+            (r == 2 && (c > 1 || c < 5 )) ||
+            (r == 3)){
+            tile.classList.add("tile");
+        }
+        else{
+            tile.classList.add("tileLess");
+        }
+
+        if (num > 0) {
+            tile.innerText = num; if (num < 3072) {
+                tile.classList.add("t" + num.toString()); }
+            else { tile.classList.add("t3072"); }
+        }
+    }
+    function device_checking() {
+        document.addEventListener("keyup", (e) => {
+            // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
+            // A S D    movedLeftDown movedVerticalDown movedRightDown
+
+            if (e.code == 81) { movedLeftUp(); }             // Q
+            else if (e.code == 87) { movedVerticalUp(); }    // W
+            else if (e.code == 69) { movedRightUp(); }       // E
+            else if (e.code == 65) { movedLeftDown(); }      // A
+            else if (e.code == 83) { movedVerticalDown(); }  // S
+            else if (e.code == 68) { movedRightDown(); }     // D
+        });
+    }
+    function movedLeftUp(){}
+    function movedVerticalUp(){}
+    function movedRightUp(){}
+    function movedLeftDown(){}
+    function movedVerticalDown(){}
+    function movedRightDown(){}
+
+    function movedUp() { slideUp(); setTwo(); }
+    function movedDown() { slideDown(); setTwo(); }
+    function movedRight() { slideRight(); setTwo(); }
+    function movedLeft() { slideLeft(); setTwo(); }
+
+    function slideLeft() {
+        for (let r = 0; r < rows; r++) {
+            let row = board[r];
+            row = slide(row);
+            board[r] = row;
+            for (let c = 0; c < columns; c++) {
+                let tile = document.getElementById(r.toString() + "-" + c.toString());
+                let num = board[r][c]; updateTile(tile, num); }
+        }
+    }
+    function slide(row) {
+        row = filterZero(row); for (let i = 0; i < row.length - 1; i++) {
+            if (row[i] == row[i + 1]) { row[i] *= 2; row[i + 1] = 0; }
+        }
+        row = filterZero(row); while (row.length < columns) { row.push(0); }
+        return row;
+    }
+    function filterZero(row) { return row.filter(num => num != 0); }
+    function slideRight() {
+        for (let r = 0; r < rows; r++) {
+            let row = board[r];
+            row.reverse(); row = slide(row);
+            row.reverse(); board[r] = row;
+            for (let c = 0; c < columns; c++) {
+                let tile = document.getElementById(r.toString() + "-" + c.toString());
+                let num = board[r][c]; updateTile(tile, num); }
+        }
+    }
+    function slideUp() {
+        for (let c = 0; c < columns; c++) {
+            let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+            row = slide(row); for (let r = 0; r < rows; r++) {
+                board[r][c] = row[r];
+                let tile = document.getElementById(r.toString() + "-" + c.toString());
+                let num = board[r][c]; updateTile(tile, num); }
+        }
+    }
+    function slideDown() {
+        for (let c = 0; c < columns; c++) {
+            let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+            row.reverse(); row = slide(row); row.reverse();
+            for (let r = 0; r < rows; r++) { board[r][c] = row[r];
+                let tile = document.getElementById(r.toString() + "-" + c.toString());
+                let num = board[r][c]; updateTile(tile, num); }
+        }
+    }
+    function setTwo() {
+        if (!(hasEmptyTile())) { return; }
+        let found = false; while (!(found)) {
+            let r = Math.floor(Math.random() * rows);
+            let c = Math.floor(Math.random() * columns);
+            if (board[r][c] == 0) { board[r][c] = 3;
+                let tile = document.getElementById(r.toString() + "-" + c.toString());
+                tile.innerText = "3"; tile.classList.add("t3"); found = true; }
+        }
+    }
+    function hasEmptyTile() {
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < columns; c++) {
+                if (board[r][c] == 0) { return true; }
+            }
+        }
+        return false;
+    }</script>
+<h1>3072</h1>
+<hr><br>
+<div id=board></div><br>
+<script>device_checking()</script>
