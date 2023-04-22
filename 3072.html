@@ -1,708 +1,677 @@
 <!doctype html>
-<title>3072</title>
-<meta content="width=device-width,initial-scale=1" name=viewport>
-<style>
-    body {
-        font-family: Consolas, 'Times New Roman';
-        text-align: center;
-        background-color: #faf8ef;
-        font: fantasy;
-        font-style: bold;
-    }
-
-    h1 {
-        font-size: 60px;
-        font-weight: bolder;
-        font-style: bold;
-        color: #766e66
-    }
-
-    #board {
-        width: 245px;
-        height: 280px;
-        border-left: 35px solid #faf8ef;
-        margin: 0 auto 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .tileLessU {
-        width: 70px;
-        height: 70px;
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-    }
-    .tileLessD {
-        width: 70px;
-        height: 70px;
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-    }
-
-    .tile{
-        position: relative;
-        width: 70px;
-        height: 70px;
-        text-align: center;
-    }
-
-    .textU {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        position: absolute;
-        transform: translate(0%, 50px);
-        font-size: 18px;
-        font-weight: bold;
-        z-index: 3;
-    }
-
-    .textD {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        position: absolute;
-        transform: translate(0%, -50px);
-        font-size: 18px;
-        font-weight: bold;
-        z-index: 3;
-    }
-
-    .tU{
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #ccc1b2;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-    }
-
-    .tD{
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #ccc1b2;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-    }
+<html>
+<head>
+    <title>3072</title>
+    <meta content="width=device-width,initial-scale=1" name=viewport>
+    <style>
+        body {
+            font-family: Consolas, 'Times New Roman';
+            text-align: center;
+            background-color: #faf8ef;
+            font: fantasy;
+            font-style: bold;
+            overflow: hidden;
+        }
     
-    .t3U{
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #ede4db;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #766e66;
-    }
-
-    .t3D{
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #ede4db;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #766e66;
-    }
-
-    .t6U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #ebdfc9;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #766e66;
-    }
-    .t6D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #ebdfc9;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #766e66;
-    }
-
-    .t12U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #e9b280;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t12D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #e9b280;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t24U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #f59662;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t24D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #f59662;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t48U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #e68469;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t48D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #e68469;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t96U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #e46b4c;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t96D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #e46b4c;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t192U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #eacc79;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t192D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #eacc79;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t384U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #edca64;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t384D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #edca64;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t768U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #e9c55b;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t768D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #e9c55b;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t1536U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #eec841;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t1536D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #eec841;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-
-    .t3072U {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 70px solid #e9c045;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
-    .t3072D {
-        width: 0px;
-        height: 0px;
-
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-top: 70px solid #e9c045;
-
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2;
-        margin-left: -35px;
-        color: #f9f6f2;
-    }
+        h1 {
+            font-size: 60px;
+            font-weight: bolder;
+            font-style: bold;
+            color: #766e66
+        }
     
-
-    .icons {
-        height: 30px;
-        width: 30px;
-        padding: 5px
-    }
-
-    button {
-        background-color: #fff
-    }
+        #board {
+            width: 245px;
+            height: 280px;
+            border-left: 35px solid #faf8ef;
+            margin: 0 auto 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
     
-</style>
-<script>
-var board;
-var rows = 4;
-var columns = 7;
-window.onload = function () { setGame(); }
-    function setGame() {
-        board = [[-1, -1, -1,  3,  -1, -1, -1],
-                 [-1, -1,  6,  12,   24, -1, -1], 
-                 [-1,  48,  96,  192,  384,  768, -1], 
-                 [1536,   3072,  6144,  12288,   24576,  49152,  98304],  
-                 ]
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < columns; c++) {
-                let tile = document.createElement("div");
+        .tileLessU {
+            width: 70px;
+            height: 70px;
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+        }
+        .tileLessD {
+            width: 70px;
+            height: 70px;
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+        }
+    
+        .tile{
+            position: relative;
+            width: 70px;
+            height: 70px;
+            text-align: center;
+        }
+    
+        .textU {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            transform: translate(0%, 50px);
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 3;
+        }
+    
+        .textD {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            transform: translate(0%, -50px);
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 3;
+        }
+    
+        .tU{
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #ccc1b2;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+        }
+    
+        .tD{
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #ccc1b2;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+        }
+        
+        .t3U{
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #ede4db;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #766e66;
+        }
+    
+        .t3D{
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #ede4db;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #766e66;
+        }
+    
+        .t6U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #ebdfc9;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #766e66;
+        }
+        .t6D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #ebdfc9;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #766e66;
+        }
+    
+        .t12U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #e9b280;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t12D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #e9b280;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t24U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #f59662;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t24D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #f59662;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t48U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #e68469;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t48D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #e68469;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t96U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #e46b4c;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t96D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #e46b4c;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t192U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #eacc79;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t192D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #eacc79;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t384U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #edca64;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t384D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #edca64;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t768U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #e9c55b;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t768D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #e9c55b;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t1536U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #eec841;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t1536D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #eec841;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+    
+        .t3072U {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 70px solid #e9c045;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        .t3072D {
+            width: 0px;
+            height: 0px;
+    
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 70px solid #e9c045;
+    
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-left: -35px;
+            color: #f9f6f2;
+        }
+        
+    
+        .icons {
+            height: 30px;
+            width: 30px;
+            padding: 5px
+        }
+    
+        button {
+            background-color: #fff
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>3072</h1><br>
+    <div id=board></div><br>
+    <script>
+        var board;
+        var rows = 4;
+        var columns = 7;
+        window.onload = function () { setGame(); }
+        function setGame() {
+            board = [[-1, -1, -1, 0, -1, -1, -1],
+                    [-1, -1,  0,  0,  0, -1, -1], 
+                    [-1,  0,  0,  0,  0,  0, -1], 
+                    [ 0,  0,  0,  0,  0,  0,  0]]
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < columns; c++) {
+                    let tile = document.createElement("div");
                     tile.id = r.toString() + "-" + c.toString();
                     let num = board[r][c];
                     updateTile(tile, num);
-                    document.getElementById("board").append(tile);}
+                    document.getElementById("board").append(tile);
+                }
+            }
+            setThree();
+            setThree();
+            setThree();
         }
-        setThree();
-        setThree();
-        setThree();
-    }
+            
+        function updateTile(tile, num) {
+            tile.innerText = "";
+            tile.classList.value = "";
+            let r = tile.id[0];
+            let c = tile.id[tile.id.length-1];
+            document.getElementById("board").append(tile);
+            
+            if(num == -1){
+                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("tileLessD");
+                }
+                else{
+                    tile.classList.add("tileLessU");
+                }
+            }
+            else{
+                if(num == 0){
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        tile.classList.add("tD");
+                    }
+                    else{
+                        tile.classList.add("tU");
+                    }
+                }
+                else if (num < 3072){
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        tile.classList.add("t" + num.toString() + "D");
+                    }
+                    else{
+                        tile.classList.add("t" + num.toString() + "U");
+                    }
+                }
+                else{
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        tile.classList.add("t" + 3072 + "D");
+                    }
+                    else{
+                        tile.classList.add("t" + 3072 + "U");
+                    }
+                }
     
-    function updateTile(tile, num) {
-        tile.innerText = "";
-        tile.classList.value = "";
-        let r = tile.id[0];
-        let c = tile.id[tile.id.length-1];
-        document.getElementById("board").append(tile);
-
-        if(num == -1){
-            if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                tile.classList.add("tileLessD");
-            }
-            else{
-                tile.classList.add("tileLessU");
-            }
-        }
-        else{
-            if(num == 0){
-                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("tD");
-                }
-                else{
-                    tile.classList.add("tU");
+                if(num != 0){
+                    let numData = document.createElement("div");
+                    numData.innerText = num;
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        numData.classList.add("textD");
+                    }
+                    else{
+                        numData.classList.add("textU");
+                    }
+                    document.getElementById(tile.id).append(numData);
                 }
             }
-            else if (num < 3072){
-                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("t" + num.toString() + "D");
-                }
-                else{
-                    tile.classList.add("t" + num.toString() + "U");
-                }
-            }
-            else{
-                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("t" + 3072 + "D");
-                }
-                else{
-                    tile.classList.add("t" + 3072 + "U");
-                }
-            }
-
-            if(num != 0){
-                let numData = document.createElement("div");
-                numData.innerText = num;
-                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    numData.classList.add("textD");
-                }
-                else{
-                    numData.classList.add("textU");
-                }
-                document.getElementById(tile.id).append(numData);
-            }
         }
 
-
-
-    function device_checking() {
-        document.addEventListener("keyup", (e) => {
-            // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
-            // A S D    movedLeftDown movedVerticalDown movedRightDown
-
-            if (e.code == 81) { movedLeftUp(); }             // Q
-            else if (e.code == 87) { movedVerticalUp(); }    // W
-            else if (e.code == 69) { movedRightUp(); }       // E
-            else if (e.code == 65) { movedLeftDown(); }      // A
-            else if (e.code == 83) { movedVerticalDown(); }  // S
-            else if (e.code == 68) { movedRightDown(); }     // D
-        });
-    }
-
-
-    function movedLeftUp(){}
-    function movedVerticalUp(){}
-    function movedRightUp(){}
-    function movedLeftDown(){}
-    function movedVerticalDown(){}
-    function movedRightDown(){}
-
-    function movedUp() { slideUp(); setThree(); }
-    function movedDown() { slideDown(); setThree(); }
-    function movedRight() { slideRight(); setThree(); }
-    function movedLeft() { slideLeft(); setThree(); }
-
-    function slideLeft() {
-        for (let r = 0; r < rows; r++) {
-            let row = board[r];
-            row = slide(row);
-            board[r] = row;
-            for (let c = 0; c < columns; c++) {
-                let tile = document.getElementById(r.toString() + "-" + c.toString());
-                let num = board[r][c]; updateTile(tile, num); }
+        function device_checking() {
+            document.addEventListener("keyup", (e) => {
+                // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
+                // A S D    movedLeftDown movedVerticalDown movedRightDown
+    
+                if      (e.keyCode == 81) { console.log(e.keyCode); movedLeftUp();    } // Q
+                else if (e.keyCode == 87) { console.log(e.keyCode); movedUp();        } // W
+                else if (e.keyCode == 69) { console.log(e.keyCode); movedRightUp();   } // E
+                else if (e.keyCode == 65) { console.log(e.keyCode); movedLeftDown();  } // A
+                else if (e.keyCode == 83) { console.log(e.keyCode); movedDown();      } // S
+                else if (e.keyCode == 68) { console.log(e.keyCode); movedRightDown(); } // D
+            });
         }
-    }
-    function slide(row) {
-        row = filterZero(row); for (let i = 0; i < row.length - 1; i++) {
-            if (row[i] == row[i + 1]) { row[i] *= 2; row[i + 1] = 0; }
-        }
-        row = filterZero(row); while (row.length < columns) { row.push(0); }
-        return row;
-    }
+    
+    
+        function movedLeftUp(){    slideLeftUp(); setThree();}
+        function movedUp(){       slideUp(); setThree();}
+        function movedRightUp(){   slideRightUp(); setThree();}
+        function movedLeftDown(){  slideLeftDown(); setThree();}
+        function movedDown(){      slideDown(); setThree();}
+        function movedRightDown(){ slideRightUp(); setThree();}
+    
+        function slideLeftUp(){}
+        function slideUp(){}
+        function slideRightUp(){}
+        function slideLeftDown(){}
+        function slideDown(){
 
-    function filterZero(row) { return row.filter(num => num != 0); }
+        }
 
-    function slideRight() {
-        for (let r = 0; r < rows; r++) {
-            let row = board[r];
-            row.reverse(); row = slide(row);
-            row.reverse(); board[r] = row;
-            for (let c = 0; c < columns; c++) {
-                let tile = document.getElementById(r.toString() + "-" + c.toString());
-                let num = board[r][c]; updateTile(tile, num); }
-        }
-    }
-    function slideUp() {
-        for (let c = 0; c < columns; c++) {
-            let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-            row = slide(row); for (let r = 0; r < rows; r++) {
-                board[r][c] = row[r];
-                let tile = document.getElementById(r.toString() + "-" + c.toString());
-                let num = board[r][c]; updateTile(tile, num); }
-        }
-    }
-    function slideDown() {
-        for (let c = 0; c < columns; c++) {
-            let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-            row.reverse(); row = slide(row); row.reverse();
-            for (let r = 0; r < rows; r++) { board[r][c] = row[r];
-                let tile = document.getElementById(r.toString() + "-" + c.toString());
-                let num = board[r][c]; updateTile(tile, num); }
-        }
-    }
-    function setThree() {
-        if (!(hasEmptyTile())) { return; }
-        let found = false; while (!(found)) {
-            let r = Math.floor(Math.random() * rows);
-            let c = Math.floor(Math.random() * columns);
-            if (board[r][c] == 0) {
-                board[r][c] = 3;
-                let tile = document.getElementById(r.toString() + "-" + c.toString());
-
-                tile.innerText = "3";
+        function setThree() {
+            if (!(hasEmptyTile())) { return; }
+            let found = false;
+            while (!(found)) {
+                let r = Math.floor(Math.random() * rows);
+                let c = Math.floor(Math.random() * columns);
+                if (board[r][c] == 0) {
+                    board[r][c] = 3;
+                    let tile = document.getElementById(r.toString() + "-" + c.toString());
+                    
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        tile.classList.add("t3D");
+                    }
+                    else{
+                        tile.classList.add("t3U");
+                    }
                 
-                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("t3D");
-                }
-                else{
-                    tile.classList.add("t3U");
-                }
+                    let numData = document.createElement("div");
+                    numData.innerText = 3;
+                    if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        numData.classList.add("textD");
+                    }
+                    else{
+                        numData.classList.add("textU");
+                    }
+                    document.getElementById(tile.id).append(numData);
 
-                found = true; 
+                    found = true; 
+                }
             }
         }
-    }
-    function hasEmptyTile() {
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < columns; c++) {
-                if (board[r][c] == 0) { return true; }
+
+        function hasEmptyTile() {
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < columns; c++) {
+                    if (board[r][c] == 0) { return true; }
+                }
             }
-        }
-        return false;
-    }
-    
-}
-</script>
-<h1>3072</h1><br>
-<div id=board></div><br>
-<script>device_checking()</script>
+            return false;
+        } 
+    </script>
+    <script>device_checking()</script>
+</body>
+</html>
