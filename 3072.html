@@ -17,36 +17,48 @@
         color: #766e66
     }
 
-    hr {
-        width: 500px;
-        border: 3px solid #bcac9e
-    }
 
     #board {
         width: 350px;
-        height: 400px;
-        background-color: #ccc1b2;
+        height: 350px;
         border: 6px solid #bcac9e;
         margin: 0 auto;
         display: flex;
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        position: relative;
     }
 
-    .tile {
-        border: 5px solid #bcac9e;
-        width: 40px;
-        height: 90px;
+    .tileU {
+        width: 0px;
+        height: 0px;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 80px solid #ccc1b2;
         font-size: 40px;
         font-weight: 700;
         display: flex;
         justify-content: center;
-        align-items: center
+        align-items: center;
+    }
+    .tileD {
+        width: 0px;
+        height: 0px;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-top: 80px solid #ccc1b2;
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute; 
     }
 
     .tileLess {
-        border: 5px solid #000;
         width: 40px;
-        height: 90px;
+        height: 40px;
         font-size: 40px;
         font-weight: 700;
         display: flex;
@@ -54,60 +66,121 @@
         align-items: center
     }
 
-    .t3 {
-        background-color: #ede4db;
+    .t3U {
+        width: 0px;
+        height: 0px;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 80px solid #ede4db;
+        font-size: 40px;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+        color: #766e66
+    }
+    .t3D {
+        width: 0px;
+        height: 0px;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-top: 80px solid #ede4db;
+        font-size: 40px;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
         color: #766e66
     }
 
-    .t6 {
+    .t6U {
+        background-color: #ebdfc9;
+        color: #766e66
+    }
+    .t6D {
         background-color: #ebdfc9;
         color: #766e66
     }
 
-    .t12 {
+    .t12U {
+        background-color: #e9b280;
+        color: #f9f6f2
+    }
+    .t12D {
         background-color: #e9b280;
         color: #f9f6f2
     }
 
-    .t24 {
+    .t24U {
+        background-color: #f59662;
+        color: #f9f6f2
+    }
+    .t24D {
         background-color: #f59662;
         color: #f9f6f2
     }
 
-    .t48 {
+    .t48U {
+        background-color: #e68469;
+        color: #f9f6f2
+    }
+    .t48D {
         background-color: #e68469;
         color: #f9f6f2
     }
 
-    .t96 {
+    .t96U {
+        background-color: #e46b4c;
+        color: #f9f6f2
+    }
+    .t96D {
         background-color: #e46b4c;
         color: #f9f6f2
     }
 
-    .t192 {
+    .t192U {
+        background-color: #eacc79;
+        color: #f9f6f2
+    }
+    .t192D {
         background-color: #eacc79;
         color: #f9f6f2
     }
 
-    .t384 {
+    .t384U {
+        background-color: #edca64;
+        color: #f9f6f2
+    }
+    .t384D {
         background-color: #edca64;
         color: #f9f6f2
     }
 
-    .t768 {
+    .t768U {
+        background-color: #e9c55b;
+        color: #f9f6f2
+    }
+    .t768D {
         background-color: #e9c55b;
         color: #f9f6f2
     }
 
-    .t1536 {
+    .t1536U {
+        background-color: #eec841;
+        color: #f9f6f2
+    }
+    .t1536D {
         background-color: #eec841;
         color: #f9f6f2
     }
 
-    .t3072 {
+    .t3072U {
         background-color: #e9c045;
         color: #f9f6f2
     }
+    .t3072D {
+        background-color: #e9c045;
+        color: #f9f6f2
+    }
+    
 
     .icons {
         height: 30px;
@@ -154,22 +227,28 @@ window.onload = function () { setGame(); }
         console.log(r);
         console.log(c);
 
-        if( (r == 0 &&  c == 3) ||
-        (r == 1 && 1 < c ) ||
-        (r == 2 && 0 < c ) ||
-        (r == 3)){
-            tile.classList.add("tile");
-        }
-        else{
-            tile.classList.add("tileLess");
-        }
-
         if (num > 0) {
-            tile.innerText = num; if (num < 3072) {
-                tile.classList.add("t" + num.toString()); }
-            else { tile.classList.add("t3072"); }
-        }
-    }
+            tile.innerText = num; 
+            if (num < 3072) {
+                if((r == 1 && c == 3) || 
+                (r == 2 && c == 2) || (r == 2 && c == 4) || 
+                (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("t" + num.toString() + "D"); }
+                else{
+                    tile.classList.add("t" + num.toString() + "U"); }
+                }
+            }
+            else { 
+                if((r == 1 && c == 3) || 
+                (r == 2 && c == 2) || (r == 2 && c == 4) || 
+                (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("t3072D");  }
+                else{
+                    tile.classList.add("t3072U");  }
+                }
+                
+            }
+
     function device_checking() {
         document.addEventListener("keyup", (e) => {
             // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
@@ -260,6 +339,6 @@ window.onload = function () { setGame(); }
         return false;
     }</script>
 <h1>3072</h1>
-<hr><br>
+<br>
 <div id=board></div><br>
 <script>device_checking()</script>
