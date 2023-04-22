@@ -606,12 +606,12 @@
                 // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
                 // A S D    movedLeftDown movedVerticalDown movedRightDown
     
-                if      (e.keyCode == 81) { console.log(e.keyCode); movedLeftUp();    } // Q
-                else if (e.keyCode == 87) { console.log(e.keyCode); movedUp();        } // W
-                else if (e.keyCode == 69) { console.log(e.keyCode); movedRightUp();   } // E
-                else if (e.keyCode == 65) { console.log(e.keyCode); movedLeftDown();  } // A
-                else if (e.keyCode == 83) { console.log(e.keyCode); movedDown();      } // S
-                else if (e.keyCode == 68) { console.log(e.keyCode); movedRightDown(); } // D
+                if      (e.keyCode == 81) { /*console.log(e.keyCode);*/ movedLeftUp();    } // Q
+                else if (e.keyCode == 87) { /*console.log(e.keyCode);*/ movedUp();        } // W
+                else if (e.keyCode == 69) { /*console.log(e.keyCode);*/ movedRightUp();   } // E
+                else if (e.keyCode == 65) { /*console.log(e.keyCode);*/ movedLeftDown();  } // A
+                else if (e.keyCode == 83) { /*console.log(e.keyCode);*/ movedDown();      } // S
+                else if (e.keyCode == 68) { /*console.log(e.keyCode);*/ movedRightDown(); } // D
             });
         }
     
@@ -627,9 +627,34 @@
         function slideUp(){}
         function slideRightUp(){}
         function slideLeftDown(){}
-        function slideDown(){
 
+        function slideDown(){
+            for(let r = 0; r < rows; r++){
+                for(let c = 0; c < columns; c++){
+                    let tile = document.getElementById(r.toString() + "-" + c.toString());
+                    if(chackZeroMinus(board[r][c], board[r+1][c])){
+                        board[r][c] = 0;
+                        board[r+1][c] *= 2;
+                    }
+                    let num = board[r+1][c];
+
+                    updateTile(tile, num);
+                }
+            }
         }
+
+
+        function chackZeroMinus(sendTile, targetTile){
+            if ((sendTile != -1) && (targetTile != -1) && (sendTile == targetTile)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        
+        
+        }
+
 
         function setThree() {
             if (!(hasEmptyTile())) { return; }
