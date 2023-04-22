@@ -18,7 +18,7 @@
     }
 
     #board {
-        width: 490px;
+        width: 245px;
         height: 280px;
         border: 6px solid #bcac9e;
         margin: 0 auto;
@@ -29,7 +29,7 @@
         position: relative;
     }
 
-    .tileLess {
+    .tileLessU {
         width: 70px;
         height: 70px;
         font-size: 40px;
@@ -37,6 +37,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
+        margin-left: -35px;
+    }
+    .tileLessD {
+        width: 70px;
+        height: 70px;
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        margin-left: -35px;
     }
 
     .tile{
@@ -69,6 +82,8 @@
         justify-content: center;
         align-items: center;
         z-index: 1;
+        margin-left: -35px;
+        
     }
 
     .tD{
@@ -85,6 +100,7 @@
         justify-content: center;
         align-items: center;
         z-index: 2;
+        margin-left: -35px;
     }
 
     .t3U {
@@ -254,7 +270,12 @@ window.onload = function () { setGame(); }
         let c = tile.id[tile.id.length-1];
 
         if(num == -1){
-            tile.classList.add("tileLess");
+            if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                tile.classList.add("tileLessD");
+            }
+            else{
+                tile.classList.add("tileLessU");
+            }
         }
         else{
             if(num == 0){
