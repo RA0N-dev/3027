@@ -7,7 +7,7 @@
         text-align: center;
         background-color: #faf8ef;
         font: fantasy;
-        font-style: bold
+        font-style: bold;
     }
 
     h1 {
@@ -17,10 +17,9 @@
         color: #766e66
     }
 
-
     #board {
-        width: 350px;
-        height: 350px;
+        width: 490px;
+        height: 280px;
         border: 6px solid #bcac9e;
         margin: 0 auto;
         display: flex;
@@ -30,67 +29,97 @@
         position: relative;
     }
 
-    .tileU {
-        width: 0px;
-        height: 0px;
-        border-left: 40px solid transparent;
-        border-right: 40px solid transparent;
-        border-bottom: 80px solid #ccc1b2;
+    .tileLess {
+        width: 70px;
+        height: 70px;
         font-size: 40px;
         font-weight: 700;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    .tileD {
-        width: 0px;
-        height: 0px;
-        border-left: 40px solid transparent;
-        border-right: 40px solid transparent;
-        border-top: 80px solid #ccc1b2;
-        font-size: 40px;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute; 
     }
 
-    .tileLess {
-        width: 40px;
-        height: 40px;
+    .tile{
+        position: relative;
+        width: 70px;
+        height: 70px;
+        text-align: center;
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .tU{
+        width: 0px;
+        height: 0px;
+
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        border-bottom: 70px solid #ccc1b2;
+
         font-size: 40px;
         font-weight: 700;
         display: flex;
         justify-content: center;
-        align-items: center
+        align-items: center;
+        z-index: 1;
+    }
+
+    .tD{
+        width: 0px;
+        height: 0px;
+
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        border-top: 70px solid #ccc1b2;
+
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
     }
 
     .t3U {
         width: 0px;
         height: 0px;
-        border-left: 40px solid transparent;
-        border-right: 40px solid transparent;
-        border-bottom: 80px solid #ede4db;
+
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 70px solid #ccc1b2;
+
         font-size: 40px;
         font-weight: 700;
+        display: flex;
         justify-content: center;
         align-items: center;
-        color: #766e66
-    }
-    .t3D {
-        width: 0px;
-        height: 0px;
-        border-left: 40px solid transparent;
-        border-right: 40px solid transparent;
-        border-top: 80px solid #ede4db;
-        font-size: 40px;
-        font-weight: 700;
-        justify-content: center;
-        align-items: center;
-        color: #766e66
     }
 
+    .t3D{
+        width: 0px;
+        height: 0px;
+
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top: 70px solid #ccc1b2;
+
+        font-size: 40px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        margin-left: -25px;
+    }
+
+    /*
     .t6U {
         background-color: #ebdfc9;
         color: #766e66
@@ -180,7 +209,7 @@
         background-color: #e9c045;
         color: #f9f6f2
     }
-    
+    */
 
     .icons {
         height: 30px;
@@ -201,10 +230,10 @@ var rows = 4;
 var columns = 7;
 window.onload = function () { setGame(); }
     function setGame() {
-        board = [[NaN, NaN, NaN, 0,   NaN, NaN, NaN],
-                 [NaN, NaN, 0,   0,   0,   NaN, NaN], 
-                 [NaN, 0,   0,   0,   0,   0,   NaN], 
-                 [0,   0,   0,   0,   0,   0,   0],  
+        board = [[-1, -1, -1,  0,  -1, -1, -1],
+                 [-1, -1,  0,  0,   0, -1, -1], 
+                 [-1,  0,  0,  0,   0,  0, -1], 
+                 [0,   0,  0,  0,   0,  0,   0],  
                  ]
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < columns; c++) {
@@ -224,30 +253,39 @@ window.onload = function () { setGame(); }
         let r = tile.id[0];
         let c = tile.id[tile.id.length-1];
 
-        console.log(r);
-        console.log(c);
+        if(num == -1){
+            tile.classList.add("tileLess");
+        }
+        else{
+            if(num == 0){
+                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("tD");
+                }
+                else{
+                    tile.classList.add("tU");
+                }
+            }
+            else if (num < 3072){
+                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("t" + num.toString() + "D");
+                }
+                else{
+                    tile.classList.add("t" + num.toString() + "U");
+                }
+            }
+            else{
+                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("t" + 3072 + "D");
+                }
+                else{
+                    tile.classList.add("t" + 3072 + "U");
+                }
+            }
+        }
 
-        if (num > 0) {
-            tile.innerText = num; 
-            if (num < 3072) {
-                if((r == 1 && c == 3) || 
-                (r == 2 && c == 2) || (r == 2 && c == 4) || 
-                (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("t" + num.toString() + "D"); }
-                else{
-                    tile.classList.add("t" + num.toString() + "U"); }
-                }
-            }
-            else { 
-                if((r == 1 && c == 3) || 
-                (r == 2 && c == 2) || (r == 2 && c == 4) || 
-                (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    tile.classList.add("t3072D");  }
-                else{
-                    tile.classList.add("t3072U");  }
-                }
-                
-            }
+        if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+
+    }
 
     function device_checking() {
         document.addEventListener("keyup", (e) => {
@@ -262,6 +300,8 @@ window.onload = function () { setGame(); }
             else if (e.code == 68) { movedRightDown(); }     // D
         });
     }
+
+
     function movedLeftUp(){}
     function movedVerticalUp(){}
     function movedRightUp(){}
@@ -291,7 +331,9 @@ window.onload = function () { setGame(); }
         row = filterZero(row); while (row.length < columns) { row.push(0); }
         return row;
     }
+
     function filterZero(row) { return row.filter(num => num != 0); }
+
     function slideRight() {
         for (let r = 0; r < rows; r++) {
             let row = board[r];
@@ -325,9 +367,20 @@ window.onload = function () { setGame(); }
         let found = false; while (!(found)) {
             let r = Math.floor(Math.random() * rows);
             let c = Math.floor(Math.random() * columns);
-            if (board[r][c] == 0) { board[r][c] = 3;
+            if (board[r][c] == 0) {
+                board[r][c] = 3;
                 let tile = document.getElementById(r.toString() + "-" + c.toString());
-                tile.innerText = "3"; tile.classList.add("t3"); found = true; }
+
+                tile.innerText = "3";
+                
+                if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                    tile.classList.add("t3D");
+                }
+                else{
+                    tile.classList.add("t3U");
+                }
+                found = true; 
+            }
         }
     }
     function hasEmptyTile() {
@@ -337,8 +390,10 @@ window.onload = function () { setGame(); }
             }
         }
         return false;
-    }</script>
-<h1>3072</h1>
-<br>
+    }
+    
+}
+</script>
+<h1>3072</h1><br>
 <div id=board></div><br>
 <script>device_checking()</script>
