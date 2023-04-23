@@ -514,7 +514,10 @@
     <script>
         var rows = 4;
         var columns = 7;
-        var board;
+        var board = [[-1, -1, -1, 3, -1, -1, -1],
+                    [-1, -1,  0,  3,  0, -1, -1], 
+                    [-1,  3,  3,  0,  0,  3, -1], 
+                    [ 0,  0,  3,  0,  0,  3,  0]];
         window.onload = function () { setGame(); }
         function setGame() {
             board = [[-1, -1, -1, 3, -1, -1, -1],
@@ -656,6 +659,10 @@
                             targetTile.classList.remove(...targetTile.classList);
                             targetTile.classList.add("t"+ board[r+1][c] +"U");
                         }
+
+                        let innerDiv = targetTile.getElementsByTagName("div")[0]; // 첫 번째 div 태그를 선택
+                        innerDiv.innerHTML = board[r+1][c]; // 내용 수정
+
                     }
                 }
             }
@@ -663,7 +670,6 @@
             while (boardId.firstChild) {
                 boardId.removeChild(boardIㅇ.firstChild);
             }
-            console.log("hey!")
             updateTile();
         }
 
