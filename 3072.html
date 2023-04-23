@@ -621,14 +621,28 @@
         function movedRightDown(){ slideRightUp(); setThree();}
     
         function slideLeftUp(){}
-        function slideUp(){}
+        function slideUp(){
+            for(let r = 0; r < rows; r++){
+                for(let c = 0; c < columns; c++){
+                    let sendTile = document.getElementById(r.toString() + "-" + c.toString());
+                    let targetTile = document.getElementById((r-1).toString() + "-" + c.toString());
+                    if(chackZeroMinus(board[r][c], board[r-1][c]) && ((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5))){
+                        board[r-1][c] = board[r-1][c] + board[r][c];
+                        board[r][c] = 0;
+                        console.log("what?");
+
+                    }
+                }
+            }
+
+
+        }
         function slideRightUp(){}
         function slideLeftDown(){}
 
         function slideDown(){
             for(let r = 0; r < rows; r++){
                 for(let c = 0; c < columns; c++){
-                    let num = 0;
                     let sendTile = document.getElementById(r.toString() + "-" + c.toString());
                     let targetTile = document.getElementById((r+1).toString() + "-" + c.toString());
                     if(chackZeroMinus(board[r][c], board[r+1][c]) && !((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5))){
@@ -702,9 +716,11 @@
                     let tile = document.getElementById(r.toString() + "-" + c.toString());
                     
                     if((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)){
+                        tile.classList.remove("tD");
                         tile.classList.add("t3D");
                     }
                     else{
+                        tile.classList.remove("tU");
                         tile.classList.add("t3U");
                     }
                 
