@@ -31,6 +31,26 @@
             align-items: center;
             position: relative;
         }
+
+        #buttonTable {
+            width: 280px;
+            height: 163px;
+            margin: 0 auto 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slideButton{
+            background-color: #ccc1b2;
+            color: #766e66;
+            font-size: 24px;
+            width: 93px;
+            height: 81px;
+            border: none;
+        }
     
         .tileLess {
             width: 70px;
@@ -511,6 +531,14 @@
 <body>
     <h1>3072</h1><br>
     <div id=board></div><br>
+    <div id=buttonTable>
+        <button id = "qKey" class="slideButton" onclick="movedLeftUp()"> Q </button>
+        <button id = "wKey" class="slideButton" onclick="movedUp()"> W </button>
+        <button id = "eKey" class="slideButton" onclick="movedRightUp()"> E </button><br>
+        <button id = "aKey" class="slideButton" onclick="movedLeftDown()"> A </button>
+        <button id = "sKey" class="slideButton" onclick="movedDown()"> S </button>
+        <button id = "dKey" class="slideButton" onclick="movedRightDown()"> D </button>
+    </div>
     <script>
         var rows = 4;
         var columns = 7;
