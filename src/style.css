@@ -52,6 +52,17 @@ h2 {
     position: relative;
 }
 
+#orderTable{
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 .slideButton {
     background-color: #ccc1b2;
     color: #766e66;
@@ -617,4 +628,111 @@ h2 {
     font-style: bold;
     font-size: 48px;
     border: none;
+}
+
+
+.backgroundQuestion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+}
+
+.showQuestion {
+    opacity: 1;
+    z-index: 1000;
+    transition: all .5s;
+}
+
+.windowQuestion {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popupQuestion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ebdfc9;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    color: #766e66;
+    padding: 16px;
+    font-size: 32px;
+    font-style: bold;
+    display: inline;
+
+    /* 임시 지정 */
+    width: 410px;
+    height: 800px;
+
+    /* 초기에 약간 아래에 배치 */
+    transform: translate(-50%, -40%);
+}
+
+.showQuestion .popupQuestion {
+    transform: translate(-50%, -50%);
+    transition: all .5s;
+    align-items: left;
+}
+
+#closeButtonQuestion {
+    background-color: rgba(0, 0, 0, 0);
+    color: #766e66;
+    font-style: bold;
+    font-size: 48px;
+    border: none;
+}
+
+.QuestionSet{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.QuestionTileSet{
+    width: 130px;
+    height: 360px;
+    color: #766e66;
+    display: flex;
+}
+
+.tileExample{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tileSetW{
+    width: 105px;
+    height: 70px;
+    margin:  0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-left: 35px solid #ebdfc9;
+}
+
+.tileSetH{
+    width: 35px;
+    height: 105px;
+    margin: 0px auto 35px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-left: 35px solid #ebdfc9;
 }
