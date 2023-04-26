@@ -7,10 +7,10 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 var gameScore = 0;
 window.onload = function () { setGame(); }
 function setGame() {
-    board = [[-1, -1, -1, 0, -1, -1, -1],
-    [-1, -1, 0, 0, 0, -1, -1],
-    [-1, 0, 0, 0, 0, 0, -1],
-    [0, 0, 0, 0, 0, 0, 0]]
+    board =[[-1, -1, -1,  0, -1, -1, -1],
+            [-1, -1,  0,  0,  0, -1, -1],
+            [-1,  0,  0,  0,  0,  0, -1],
+            [ 0,  0,  0,  0,  0,  0,  0]]
     gameScore = 0;
     let temp = document.getElementById("board");
     while (temp.firstChild) {
@@ -50,19 +50,27 @@ function addScore(point) {
 function gameOverChack() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
-            if(board[r][c] >= 0)
-                if((r == 1 && c == 3) || (r == 2 && c == 2)|| (r == 2 && c == 4) || (r == 3 && c == 1)|| (r == 3 && c == 3) || (r == 3 && c == 5)){
-                    if(board[r][c] == board[r-1][c] && board[r][c] == board[r][c-1] && board[r][c] == board[r][c+1]){
-                        return true;
+            if(board[r][c] >= 0){
+                if((r == 1 && c == 3)
+                || (r == 2 && c == 2)
+                || (r == 2 && c == 4)
+                || (r == 3 && c == 1)
+                || (r == 3 && c == 3)
+                || (r == 3 && c == 5)){
+                    if(board[r][c] == board[r-1][c] || board[r][c] == board[r][c-1] ||board[r][c] == board[r][c+1]){
+                        return false;
                     }
-                }
-                else{
-                    if(board[r][c] == board[r+1][c] && board[r][c] == board[r][c-1] && board[r][c] == board[r][c+1]){
-                        return true;
+                    else{
+                        if(r == 3 && c == 0 &&(board[r][c] == board[r][c+1])){return false;}
+                        else if(r == 3 && c == 6 &&(board[r][c] == board[r][c-1])){}
+                        else if(r == 3 &&(board[r][c] == board[r][c-1] || board[r][c] == board[r][c+1])){return false;}
+                        else if(board[r][c] == board[r-1][c] || board[r][c] == board[r][c-1] ||board[r][c] == board[r][c+1]){return false;}
+                    }
                 }
             }
         }
     }
+
     let temp = document.getElementById("endScore");
     while (temp.firstChild) {
         temp.removeChild(temp.firstChild);
@@ -595,6 +603,6 @@ function hasEmptyTile() {
             if (board[r][c] == 0) { return true; }
         }
     }
-    //gameOverChack();
+    gameOverChack();
     return false;
 }
