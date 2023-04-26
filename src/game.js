@@ -1,16 +1,16 @@
 var rows = 4;
 var columns = 7;
-var board = [[-1, -1, -1, 0, -1, -1, -1],
-[-1, -1, 0, 0, 0, -1, -1],
-[-1, 0, 0, 0, 0, 0, -1],
-[0, 0, 0, 0, 0, 0, 0]];
+var board =[[-1, -1, -1, 0, -1, -1, -1],
+            [-1, -1, 0, 0, 0, -1, -1],
+            [-1, 0, 0, 0, 0, 0, -1],
+            [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
 window.onload = function () { setGame(); }
 function setGame() {
-    board =[[-1, -1, -1,  0, -1, -1, -1],
-            [-1, -1,  0,  0,  0, -1, -1],
-            [-1,  0,  0,  0,  0,  0, -1],
-            [ 0,  0,  0,  0,  0,  0,  0]]
+    board =[[-1, -1, -1, 0, -1, -1, -1],
+            [-1, -1, 0, 0, 0, -1, -1],
+            [-1, 0, 0, 0, 0, 0, -1],
+            [0, 0, 0, 0, 0, 0, 0]];
     gameScore = 0;
     let temp = document.getElementById("board");
     while (temp.firstChild) {
@@ -80,33 +80,39 @@ function gameOverChack() {
     openPopup();
 }
 
-function Sharing(){
-
-    let text = "";
-
+function Sharing() {
+    var text = "     \n"; // 첫 줄에 공백을 추가한 문자열로 초기화
+  
     for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < columns; c++) {
-            if(board[r][c] >= 0){
-                if(board[r][c] <= 6){text += "🟫";}
-                else if(board[r][c] <= 48){text += "🟧";}
-                else if(board[r][c] <= 96){text += "🟥";}
-                else{text += "🟨";}
-            }
-            else{
-                text += "    ";
-            }
-            text += " ";
+      for (let c = 0; c < columns; c++) {
+        if (board[r][c] >= 0) {
+          if (board[r][c] <= 6) {
+            text += "🟫";
+          } else if (board[r][c] <= 48) {
+            text += "🟧";
+          } else if (board[r][c] <= 96) {
+            text += "🟥";
+          } else {
+            text += "🟨";
+          }
+        } else {
+          text += "◼️";
         }
-        text += "\n";
+        text += " ";
+      }
+      text += "\n";
     }
-
+  
     text += "Score : " + gameScore.toString() + "\n";
-
+  
     var url = "3072.app";
-
-    var twitter_url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + url;
-
-
+  
+    var twitter_url =
+      "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(text) +
+      "&url=" +
+      url;
+  
     window.open(twitter_url, "_blank");
 }
 
