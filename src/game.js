@@ -80,7 +80,35 @@ function gameOverChack() {
     openPopup();
 }
 
+function Sharing(){
 
+    let text = "";
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if(board[r][c] >= 0){
+                if(board[r][c] <= 6){text += "🟫";}
+                else if(board[r][c] <= 48){text += "🟧";}
+                else if(board[r][c] <= 96){text += "🟥";}
+                else{text += "🟨";}
+            }
+            else{
+                text += "    ";
+            }
+            text += " ";
+        }
+        text += "\n";
+    }
+
+    text += "Score : " + gameScore.toString() + "\n";
+
+    var url = "3072.app";
+
+    var twitter_url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + url;
+
+
+    window.open(twitter_url, "_blank");
+}
 
 function openPopup() {
     document.querySelector(".background").className = "background show";
