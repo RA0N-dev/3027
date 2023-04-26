@@ -526,17 +526,6 @@ h2 {
     color: #f9f6f2;
 }
 
-
-.icons {
-    height: 30px;
-    width: 30px;
-    padding: 5px
-}
-
-button {
-    background-color: #fff
-}
-
 .background {
     position: fixed;
     top: 0;
@@ -573,6 +562,7 @@ button {
     color: #766e66;
     padding: 16px;
     font-size: 32px;
+    font-style: bold;
 
     /* 임시 지정 */
     width: 280px;
@@ -580,12 +570,12 @@ button {
 
     /* 초기에 약간 아래에 배치 */
     transform: translate(-50%, -40%);
-    align-items: center;
 }
 
 .show .popup {
     transform: translate(-50%, -50%);
     transition: all .5s;
+    align-items: left;
 }
 
 #closeButton {
