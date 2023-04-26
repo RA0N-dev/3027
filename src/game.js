@@ -80,6 +80,21 @@ function gameOverChack() {
     openPopup();
 }
 
+
+function openPopup() {
+    document.querySelector(".background").className = "background show";
+}
+function closePopup() {
+    document.querySelector(".background").className = "background";
+}
+
+function questionGame(){
+    document.querySelector(".backgroundQuestion").className = "backgroundQuestion showQuestion";
+}
+function closePopupQuestion() {
+    document.querySelector(".backgroundQuestion").className = "backgroundQuestion";
+}
+
 function Sharing() {
     var text = "     \n"; // 첫 줄에 공백을 추가한 문자열로 초기화
   
@@ -116,12 +131,6 @@ function Sharing() {
     window.open(twitter_url, "_blank");
 }
 
-function openPopup() {
-    document.querySelector(".background").className = "background show";
-}
-function closePopup() {
-    document.querySelector(".background").className = "background";
-}
 function updateTile(tile, num) {
     tile.innerText = "";
     tile.classList.value = "";
