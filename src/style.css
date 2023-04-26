@@ -41,8 +41,9 @@ h2 {
 }
 
 #buttonTable {
-    width: 280px;
-    height: 140px;
+    width: 315px;
+    height: 70px;
+    border-left: 35px solid #faf8ef;
     margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -70,6 +71,36 @@ h2 {
     align-items: center;
     z-index: 1;
     margin-left: -35px;
+}
+
+.tBU{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    transform: translate(0%, 50px);
+    font-size: 24px;
+    z-index: 3;
+    border: None;
+    background-color: rgba(0, 0, 0, 0);
+    color: #FDF6EF;
+    pointer-events: auto;
+}
+
+.tBD{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    transform: translate(0%, -50px);
+    font-size: 24px;
+    z-index: 3;
+    border: None;
+    background-color: rgba(0, 0, 0, 0);
+    color: #FDF6EF;
+    pointer-events: auto;
 }
 
 .textU {
@@ -111,6 +142,7 @@ h2 {
     align-items: center;
     z-index: 1;
     margin-left: -35px;
+    pointer-events: none;
 }
 
 .tD {
@@ -128,6 +160,7 @@ h2 {
     align-items: center;
     z-index: 2;
     margin-left: -35px;
+    pointer-events: none;
 }
 
 .t3U {
