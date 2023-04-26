@@ -80,6 +80,8 @@ function gameOverChack() {
     openPopup();
 }
 
+
+
 function openPopup() {
     document.querySelector(".background").className = "background show";
 }
