@@ -24,7 +24,15 @@ h2 {
     font-size: 24px;
     font-weight: bolder;
     font-style: bold;
-    color: #766e66
+    color: #766e66;
+    margin: 0 auto;
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: bolder;
+    color: #766e66;
+    margin: auto auto 0 auto;
 }
 
 #score {
@@ -48,7 +56,7 @@ h2 {
 
 #buttonTable {
     width: 280px;
-    height: 195px;
+    height: 100px;
     margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +81,7 @@ h2 {
     color: #766e66;
     font-size: 24px;
     width: 90px;
-    height: 90px;
+    height: 45px;
     border: none;
     border-radius: 10px;
     margin: auto;
