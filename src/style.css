@@ -47,35 +47,37 @@ h2 {
 }
 
 #buttonTable {
-    width: 315px;
-    height: 70px;
-    border-left: 35px solid #faf8ef;
+    width: 280px;
+    height: 195px;
     margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     position: relative;
+    padding: 5px 0;
 }
 
 #orderTable{
-    width: 70px;
+    width: 100%;
     height: 70px;
     margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     position: relative;
 }
 
 .slideButton {
-    background-color: #ccc1b2;
+    background-color: #8F7A65;
     color: #766e66;
     font-size: 24px;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border: none;
+    border-radius: 10px;
+    margin: auto;
+    color: #FDF6EF;
 }
 
 .tileLess {
@@ -617,6 +619,7 @@ h2 {
     height: 280px;
 
     transform: translate(-50%, -40%);
+    border-radius: 10px;
 }
 
 .show .popup {
@@ -643,7 +646,6 @@ h2 {
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1000;
 
-    /* 숨기기 */
     z-index: -1;
     opacity: 0;
 }
@@ -673,12 +675,11 @@ h2 {
     font-style: bold;
     display: inline;
 
-    /* 임시 지정 */
     width: 410px;
     height: 800px;
 
-    /* 초기에 약간 아래에 배치 */
     transform: translate(-50%, -40%);
+    border-radius: 10px;
 }
 
 .showQuestion .popupQuestion {
