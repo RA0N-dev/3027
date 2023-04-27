@@ -19,9 +19,9 @@ function setGame() {
     updateScore();
     closePopup();
     boardUpdate();
-    setThree();
-    setThree();
-    setThree();
+    setNewTile();
+    setNewTile();
+    setNewTile();
 }
 function boardUpdate() {
     for (let r = 0; r < rows; r++) {
@@ -205,12 +205,12 @@ function device_checking() {
 }
 
 
-function movedLeftUp() { slideLeftUp(); setThree(); if (hasEmptyTile()) { addScore(1); } }
-function movedUp() { slideUp(); setThree(); if (hasEmptyTile()) { addScore(1); } }
-function movedRightUp() { slideRightUp(); setThree(); if (hasEmptyTile()) { addScore(1); } }
-function movedLeftDown() { slideLeftDown(); setThree(); if (hasEmptyTile()) { addScore(1); } }
-function movedDown() { slideDown(); setThree(); if (hasEmptyTile()) { addScore(1); } }
-function movedRightDown() { slideRightDown(); setThree(); if (hasEmptyTile()) { addScore(1); } }
+function movedLeftUp() {    slideLeftUp();    setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+function movedUp() {        slideUp();        setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+function movedRightUp() {   slideRightUp();   setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+function movedLeftDown() {  slideLeftDown();  setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+function movedDown() {      slideDown();      setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+function movedRightDown() { slideRightDown(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
 
 function slideLeftUp() {
     for (let r = 0; r < rows; r++) {
@@ -610,27 +610,62 @@ function chackZeroMinus(sendTile, targetTile) {
     }
     return false;
 }
-function setThree() {
+
+function deldteTile(num){
+    if(num <= 0) return false;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if(num == board[r][c]){
+                let deldteTargetTile = document.getElementById(r.toString() + "-" + c.toString());
+                board[r][c] = 0;
+                if ((r == 1 && c == 3)
+                    || (r == 2 && c == 2)
+                    || (r == 2 && c == 4)
+                    || (r == 3 && c == 1)
+                    || (r == 3 && c == 3)
+                    || (r == 3 && c == 5)) {
+                        deldteTargetTile.classList.remove(...deldteTargetTile.classList);
+                        deldteTargetTile.classList.add("tD");
+                }
+                else {
+                    deldteTargetTile.classList.remove(...deldteTargetTile.classList);
+                    deldteTargetTile.classList.add("tU");
+                }
+                while (deldteTargetTile.firstChild) {
+                    deldteTargetTile.removeChild(deldteTargetTile.firstChild);
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function setNewTile() {
     if (!(hasEmptyTile())) { return; }
     let found = false;
+    let newTileNum = 0;
+    if(gameScore >= 1000){ newTileNum = 24; deldteTile(12);}
+    else if(gameScore >= 100){ newTileNum = 12; deldteTile(6);}
+    else if(gameScore >= 10){ newTileNum = 6; deldteTile(3);}
+    else{ newTileNum = 3; }
     while (!(found)) {
         let r = Math.floor(Math.random() * rows);
         let c = Math.floor(Math.random() * columns);
         if (board[r][c] == 0) {
-            board[r][c] = 3;
+            board[r][c] = newTileNum;
             let tile = document.getElementById(r.toString() + "-" + c.toString());
 
             if ((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)) {
                 tile.classList.remove("tD");
-                tile.classList.add("t3D");
+                tile.classList.add("t" + newTileNum + "D");
             }
             else {
                 tile.classList.remove("tU");
-                tile.classList.add("t3U");
+                tile.classList.add("t" + newTileNum + "U");
             }
 
             let numData = document.createElement("div");
-            numData.innerText = 3;
+            numData.innerText = newTileNum;
             if ((r == 1 && c == 3) || (r == 2 && c == 2) || (r == 2 && c == 4) || (r == 3 && c == 1) || (r == 3 && c == 3) || (r == 3 && c == 5)) {
                 numData.classList.add("textD");
             }
@@ -642,6 +677,7 @@ function setThree() {
         }
     }
 }
+
 function hasEmptyTile() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
