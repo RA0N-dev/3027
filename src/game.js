@@ -131,7 +131,7 @@ function Sharing() {
             if(maxTile < board[r][c]){maxTile = board[r][c]}
         }
     }
-    text += "\n";
+    text += maxTile + "\n";
 
     var url = "3072.app";
   
