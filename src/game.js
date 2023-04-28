@@ -95,8 +95,12 @@ function closePopupQuestion() {
     document.querySelector(".backgroundQuestion").className = "backgroundQuestion";
 }
 
+function SettingMenu(){
+
+}
+
 function Sharing() {
-    var text = "     \n"; // 첫 줄에 공백을 추가한 문자열로 초기화
+    var text = "     \n";
   
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < columns; c++) {
