@@ -123,7 +123,16 @@ function Sharing() {
     }
   
     text += "Score : " + gameScore.toString() + "\n";
-  
+    text += "max tiles : ";
+
+    let maxTile = 0;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if(maxTile < board[r][c]){maxTile = board[r][c]}
+        }
+    }
+    text += "\n";
+
     var url = "3072.app";
   
     var twitter_url =
