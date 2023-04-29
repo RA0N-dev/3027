@@ -657,9 +657,8 @@ function setNewTile() {
     if (!(hasEmptyTile())) { return; }
     let found = false;
     let newTileNum = 0;
-    if(gameScore >= 1000){ newTileNum = 24; deldteTile(12);}
-    else if(gameScore >= 100){ newTileNum = 12; deldteTile(6);}
-    else if(gameScore >= 10){ newTileNum = 6; deldteTile(3);}
+    if(gameScore >= 1000){ newTileNum = 12; deldteTile(6);}
+    else if(gameScore >= 100){ newTileNum = 6; deldteTile(3);}
     else{ newTileNum = 3; }
     while (!(found)) {
         let r = Math.floor(Math.random() * rows);
