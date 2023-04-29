@@ -34,9 +34,9 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button id="closeButton" onclick="closePopup()">X</button><br>
-        </div>
-        <h2>GameOver!</h2>
+          <button id="closeButton" class="slideButton" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button><br>
+        </div><br>
+        <h2 style="font-size: 48px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div>
         </h2><br>
         <button class="slideButton" style="width: 110px; height: 58px;" onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>
@@ -49,99 +49,38 @@
     <div class="windowQuestion">
       <div class="popupQuestion">
         <div style="display: flex;">
-          <button id="closeButtonQuestion" onclick="closePopupQuestion()">X</button><br>
+          <button id="closeButtonQuestion" class="slideButton" onclick="closePopupQuestion()"><i class="fa-solid fa-xmark"></i></button><br>
         </div>
         <div class="QuestionSet">
 
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">Q</h2><br>
-              <div class="tileExample">
-                <div class="tileSetW">
-                  <div class="tD"></div>
-                  <div class="t3U"><div class="textU">3</div></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetW">
-                  <div class="t3D"><div class="textD">3</div></div>
-                  <div class="tU"></div>
-                </div>
-              </div>
-            </div>
+          <!-- <i class="fa-solid fa-arrow-down-arrow-up"></i> up down 
+               <i class="fa-solid fa-up-right-and-down-left-from-center"></i> /
+              <i class="fa-solid fa-up-right-and-down-left-from-center fa-rotate-90"></i> \
+          -->
 
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">W</h2><br>
-              <div class="tileExample">
-                <div class="tileSetH">
-                  <div class="tU"></div>
-                  <div class="t3D"><div class="textD">3</div></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetH">
-                  <div class="t3U"><div class="textU">3</div></div>
-                  <div class="tD"></div>
-                </div>
-              </div>
+          <div class="questionTileSet">
+            <div class="questionKey">W</div>
+            <div class="tileExample">
+              <div class="tileLess"></div>
+              <div class="t3U"><div class="textU">3</div></div>
+              <div class="tileLess"></div>
+              <div class="tileLess"></div>
+              <div class="tD"></div>
+              <div class="tileLess"></div>
             </div>
+            <div class="questionKey"><i class="fa-solid fa-up-down" style="margin-top: 9px;"></i></div>
+            <div class="tileExample">
+              <div class="tileLess"></div>
+              <div class="tU"></div>
+              <div class="tileLess"></div>
+              <div class="tileLess"></div>
+              <div class="t3D"></div>
+              <div class="tileLess"></div>
+            </div>
+            <div class="questionKey">S</div>
+          </div>
 
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">E</h2><br>
-              <div class="tileExample">
-                <div class="tileSetW">
-                  <div class="tD"></div>
-                  <div class="t3U"><div class="textU">3</div></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetW">
-                  <div class="t3D"><div class="textD">3</div></div>
-                  <div class="tU"></div>
-                </div>
-              </div>
-            </div>
 
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">A</h2><br>
-              <div class="tileExample">
-                <div class="tileSetW">
-                  <div class="tU"></div>
-                  <div class="t3D"><div class="textD">3</div></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetW">
-                  <div class="t3U"><div class="textU">3</div></div>
-                  <div class="tD"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">S</h2><br>
-              <div class="tileExample">
-                <div class="tileSetH">
-                  <div class="t3U"><div class="textU">3</div></div>
-                  <div class="tD"></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetH">
-                  <div class="tU"></div>
-                  <div class="t3D"><div class="textD">3</div></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="QuestionTileSet">
-              <h2 style="margin-left: 10px;">D</h2><br>
-              <div class="tileExample">
-                <div class="tileSetW">
-                  <div class="t3D"><div class="textD">3</div></div>
-                  <div class="tU"></div>
-                </div>
-                <div>↓</div>
-                <div class="tileSetW">
-                  <div class="tD"></div>
-                  <div class="t3U"><div class="textU">3</div></div>
-                </div>
-              </div>
-            </div>
 
           </div> 
         </div>
