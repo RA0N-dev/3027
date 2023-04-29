@@ -32,7 +32,7 @@ h3 {
     font-size: 12px;
     font-weight: bolder;
     color: #766e66;
-    margin: auto auto 0 auto;
+    margin: 0 auto;
 }
 
 #score {
@@ -52,6 +52,17 @@ h3 {
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+#menuBar{
+    width: 100%;
+    height: 60px; 
+    background-color: #faf8ef;
+    border-bottom: 5px solid #766e66;
+    border-top: 5px solid rgba(0, 0, 0, 0);
+    margin: 0;
+    display: flex;
+    align-items: space-between;
 }
 
 #buttonTable {
@@ -100,35 +111,6 @@ h3 {
     margin-left: -35px;
 }
 
-.tBU{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: absolute;
-    transform: translate(0%, 50px);
-    font-size: 24px;
-    z-index: 3;
-    border: None;
-    background-color: rgba(0, 0, 0, 0);
-    color: #FDF6EF;
-    pointer-events: auto;
-}
-
-.tBD{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: absolute;
-    transform: translate(0%, -50px);
-    font-size: 24px;
-    z-index: 3;
-    border: None;
-    background-color: rgba(0, 0, 0, 0);
-    color: #FDF6EF;
-    pointer-events: auto;
-}
 
 .textU {
     display: flex;
@@ -616,7 +598,7 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ede4db;
+    background-color: #faf8ef;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
     color: #766e66;
     padding: 16px;
@@ -637,8 +619,9 @@ h3 {
 }
 
 #closeButton {
-    background-color: rgba(0, 0, 0, 0);
-    color: #766e66;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0 0;
     font-style: bold;
     font-size: 48px;
     border: none;
@@ -675,7 +658,7 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ebdfc9;
+    background-color: #faf8ef;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
     color: #766e66;
     padding: 16px;
@@ -683,8 +666,8 @@ h3 {
     font-style: bold;
     display: inline;
 
-    width: 410px;
-    height: 800px;
+    width: 315px;
+    height: 412px;
 
     transform: translate(-50%, -40%);
     border-radius: 10px;
@@ -697,65 +680,158 @@ h3 {
 }
 
 #closeButtonQuestion {
-    background-color: rgba(0, 0, 0, 0);
-    color: #766e66;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0 0;
     font-style: bold;
     font-size: 48px;
     border: none;
 }
 
 .QuestionSet{
-    width: 100%;
-    height: 100%;
+    width: 315px;
+    height: 360px;
     display: flex;
     flex-wrap: wrap;
     margin: auto;
 }
 
-.QuestionTileSet{
-    width: 130px;
-    height: 360px;
+.questionKey{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.questionTileSet{
+    width: 70px;
+    height: 290px;
     color: #766e66;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto;
 }
 
 .tileExample{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.tileSetW{
-    width: 105px;
+    border-left: 17.5px solid #faf8ef;
+    width: 70px;
     height: 70px;
-    margin:  0 auto;
+    margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     position: relative;
-    border-left: 35px solid #ebdfc9;
 }
 
-.tileSetH{
+
+.tileExample .tileLess {
     width: 35px;
-    height: 105px;
-    margin: 0px auto 35px auto;
+    height: 35px;
+    font-size: 35px;
+    font-weight: 700;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    position: relative;
-    border-left: 35px solid #ebdfc9;
+    z-index: 1;
+    margin-left: -17.5px;
 }
 
-#menuBar{
-    width: 100%;
-    height: 60px; 
-    background-color: #faf8ef;
-    border-bottom: 5px solid #766e66;
-    border-top: 5px solid rgba(0, 0, 0, 0);
-    margin: 0;
+
+.tileExample .t3U .textU {
     display: flex;
-    align-items: space-between;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    transform: translate(0%, 50px);
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.tileExample .t3D .textD {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    transform: translate(0%, -50px);
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.tileExample .tU {
+    width: 0px;
+    height: 0px;
+
+    border-left: 17.5px solid transparent;
+    border-right: 17.5px solid transparent;
+    border-bottom: 35px solid #ccc1b2;
+
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-left: -17.5px;
+    pointer-events: none;
+}
+
+.tileExample .tD {
+    width: 0px;
+    height: 0px;
+
+    border-left: 17.5px solid transparent;
+    border-right: 17.5px solid transparent;
+    border-top: 35px solid #ccc1b2;
+
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    margin-left: -17.5px;
+    pointer-events: none;
+}
+
+.tileExample .t3U {
+    width: 0px;
+    height: 0px;
+
+    border-left: 17.5px solid transparent;
+    border-right: 17.5px solid transparent;
+    border-bottom: 35px solid #ede4db;
+
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-left: -17.5px;
+    color: #766e66;
+}
+
+.tileExample .t3D {
+    width: 0px;
+    height: 0px;
+
+    border-left: 17.5px solid transparent;
+    border-right: 17.5px solid transparent;
+    border-top: 35px solid #ede4db;
+
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    margin-left: -17.5px;
+    color: #766e66;
 }
