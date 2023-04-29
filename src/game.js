@@ -11,6 +11,13 @@ function setGame() {
             [-1, -1, 0, 0, 0, -1, -1],
             [-1, 0, 0, 0, 0, 0, -1],
             [0, 0, 0, 0, 0, 0, 0]];
+    /* testing
+    board =[[-1, -1, -1, 96, -1, -1, -1],
+            [-1, -1, 24, 48, 24, -1, -1],
+            [-1, 3, 12, 3, 12, 3, -1],
+            [3, 6, 3, 192, 3, 6, 3]];*/
+    
+    
     gameScore = 0;
     let temp = document.getElementById("board");
     while (temp.firstChild) {
@@ -105,15 +112,21 @@ function Sharing() {
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < columns; c++) {
         if (board[r][c] >= 0) {
-          if (board[r][c] <= 6) {
-            text += "🟫";
-          } else if (board[r][c] <= 48) {
-            text += "🟧";
-          } else if (board[r][c] <= 96) {
-            text += "🟥";
-          } else {
-            text += "🟨";
-          }
+            if(board[r][c] <= 6){
+                text += "⬜️" // 흰색
+            }
+            else if(board[r][c] <= 12){
+                text += "🟫"; //갈색
+            }
+            else if (board[r][c] <= 48) {
+                text += "🟧"; //주황색  
+            }
+            else if (board[r][c] <= 96) {
+                text += "🟥"; //빨간색
+            }
+            else {
+                text += "🟨"; //노란색
+            }
         } else {
           text += "◼️";
         }
