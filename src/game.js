@@ -1,3 +1,5 @@
+window.onload = function () { setGame(); }
+
 var rows = 4;
 var columns = 7;
 var board = [[-1, -1, -1, 0, -1, -1, -1],
@@ -5,7 +7,7 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 [-1, 0, 0, 0, 0, 0, -1],
 [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
-window.onload = function () { setGame(); }
+
 function setGame() {
     board = [[-1, -1, -1, 0, -1, -1, -1],
     [-1, -1, 0, 0, 0, -1, -1],
@@ -115,7 +117,6 @@ function SettingMenu() {
 
 function Sharing() {
     var text = "     \n";
-
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             if (board[r][c] >= 0) {
@@ -209,27 +210,25 @@ function updateTile(tile, num) {
 }
 function device_checking() {
     document.addEventListener("keyup", (e) => {
-        // Q W E    movedLeftUp   movedVerticalUp   movedRightUp
-        // A S D    movedLeftDown movedVerticalDown movedRightDown
-
-        if (e.keyCode == 81) { movedLeftUp(); } // Q
-        else if (e.keyCode == 87) { movedUp(); } // W
-        else if (e.keyCode == 69) { movedRightUp(); } // E
-        else if (e.keyCode == 65) { movedLeftDown(); } // A
-        else if (e.keyCode == 83) { movedDown(); } // S
-        else if (e.keyCode == 68) { movedRightDown(); } // D
-        else if (e.keyCode == 82) { setGame(); } // R
+        silde(e.keyCode);
     });
 }
 
-
-
-function movedLeftUp() { slideLeftUp(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
-function movedUp() { slideUp(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
-function movedRightUp() { slideRightUp(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
-function movedLeftDown() { slideLeftDown(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
-function movedDown() { slideDown(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
-function movedRightDown() { slideRightDown(); setNewTile(); if (hasEmptyTile()) { addScore(1); } }
+// Q W E    movedLeftUp   movedVerticalUp   movedRightUp
+// A S D    movedLeftDown movedVerticalDown movedRightDown
+function silde(num) {
+    if (num == 82) { setGame(); } // R
+    else {
+        if (num == 81) { slideLeftUp(); } // Q
+        else if (num == 87) { slideUp(); } // W
+        else if (num == 69) { slideRightUp(); } // E
+        else if (num == 65) { slideLeftDown(); } // A
+        else if (num == 83) { slideDown(); } // S
+        else if (num == 68) { slideRightDown(); } // D
+        setNewTile();
+        if (hasEmptyTile()) { addScore(1); }
+    }
+}
 
 function slideLeftUp() {
     for (let r = 0; r < rows; r++) {
