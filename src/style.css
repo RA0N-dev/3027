@@ -1,14 +1,15 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 body {
-  font-family: Consolas, 'Times New Roman';
-  text-align: center;
-  background-color: #faf8ef;
-  font-style: bold;
+    font-family: Consolas, 'Times New Roman';
+    text-align: center;
+    background-color: #faf8ef;
+    font-style: bold;
 }
 
 
@@ -54,9 +55,9 @@ h3 {
     position: relative;
 }
 
-#menuBar{
+#menuBar {
     width: 100%;
-    height: 60px; 
+    height: 60px;
     background-color: #faf8ef;
     border-bottom: 5px solid #766e66;
     border-top: 5px solid rgba(0, 0, 0, 0);
@@ -76,7 +77,7 @@ h3 {
     padding: 5px 0;
 }
 
-#orderTable{
+#orderTable {
     width: 100%;
     height: 70px;
     margin: 0 auto 0 auto;
@@ -102,15 +103,13 @@ h3 {
 .tileLess {
     width: 70px;
     height: 70px;
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
     margin-left: -35px;
 }
-
 
 .textU {
     display: flex;
@@ -144,8 +143,6 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #ccc1b2;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,8 +159,6 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #ccc1b2;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -180,8 +175,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #ede4db;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,8 +192,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #ede4db;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,8 +209,6 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #ebdfc9;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -234,8 +225,6 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #ebdfc9;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -252,8 +241,6 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #e9b280;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -270,8 +257,6 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #e9b280;
 
-    font-size: 40px;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,8 +273,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #f59662;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -306,8 +290,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #f59662;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -324,8 +307,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #e68469;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -342,8 +324,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #e68469;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -360,8 +341,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #e46b4c;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -378,8 +358,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #e46b4c;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -396,8 +375,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #eacc79;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -414,8 +392,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #eacc79;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -432,8 +409,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #edca64;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -450,8 +426,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #edca64;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -468,8 +443,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #e9c55b;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -486,8 +460,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #e9c55b;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -504,8 +477,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #eec841;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -522,8 +494,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #eec841;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -540,8 +511,7 @@ h3 {
     border-right: 35px solid transparent;
     border-bottom: 70px solid #e9c045;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -558,8 +528,7 @@ h3 {
     border-right: 35px solid transparent;
     border-top: 70px solid #e9c045;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -688,7 +657,7 @@ h3 {
     border: none;
 }
 
-.QuestionSet{
+.QuestionSet {
     width: 315px;
     height: 360px;
     display: flex;
@@ -696,13 +665,13 @@ h3 {
     margin: auto;
 }
 
-.questionKey{
+.questionKey {
     width: 50px;
     height: 50px;
     margin: 0 auto;
 }
 
-.questionTileSet{
+.questionTileSet {
     width: 70px;
     height: 290px;
     color: #766e66;
@@ -714,7 +683,7 @@ h3 {
     margin: auto;
 }
 
-.tileExample{
+.tileExample {
     border-left: 17.5px solid #faf8ef;
     width: 70px;
     height: 70px;
@@ -762,6 +731,7 @@ h3 {
     font-size: 18px;
     font-weight: bold;
     z-index: 3;
+    margin-top: 10px;
 }
 
 .tileExample .tU {
@@ -772,8 +742,7 @@ h3 {
     border-right: 17.5px solid transparent;
     border-bottom: 35px solid #ccc1b2;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -790,8 +759,7 @@ h3 {
     border-right: 17.5px solid transparent;
     border-top: 35px solid #ccc1b2;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -808,8 +776,7 @@ h3 {
     border-right: 17.5px solid transparent;
     border-bottom: 35px solid #ede4db;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -826,8 +793,7 @@ h3 {
     border-right: 17.5px solid transparent;
     border-top: 35px solid #ede4db;
 
-    font-size: 40px;
-    font-weight: 700;
+
     display: flex;
     justify-content: center;
     align-items: center;
