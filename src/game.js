@@ -210,7 +210,9 @@ function updateTile(tile, num) {
 }
 function device_checking() {
     document.addEventListener("keyup", (e) => {
-        silde(e.keyCode);
+        if(e.keyCode == 82 || e.keyCode == 81 || e.keyCode == 87 || e.keyCode == 69 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68){
+            silde(e.keyCode);
+        }
     });
 }
 
@@ -343,7 +345,7 @@ function deldteTile(num) {
 }
 
 function setNewTile() {
-    if (!(hasEmptyTile())) { return; }
+    if (!(hasEmptyTile())) { return false; }
     let found = false;
     let newTileNum = 0;
     if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
