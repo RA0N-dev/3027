@@ -93,6 +93,17 @@ function gameOverChack() {
     deldteChild("endScore");
     document.getElementById("endScore").append(gameScore);
 
+
+    let maxTile = 0;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (maxTile < board[r][c]) { maxTile = board[r][c] }
+        }
+    }
+
+    deldteChild("maxTiles");
+    document.getElementById("maxTiles").append(maxTile);
+
     openPopup();
 }
 
