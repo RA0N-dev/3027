@@ -11,21 +11,24 @@
 
 <body>
   <div id="menuBar">
-    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;" onclick="settingPopup()"><i class="fa-solid fa-gear"></i></i></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;"
+      onclick="settingPopup()"><i class="fa-solid fa-gear"></i></i></button>
     <h1>3072</h1>
-    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><i class="fa-solid fa-question"></i></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><i
+        class="fa-solid fa-question"></i></button>
   </div>
   <div id="orderTable">
-    <button class="slideButton" style="width: 50px; height: 50px; margin-right: 10px; margin-left: auto;" onclick="setGame()"><i class="fa-solid fa-rotate"></i></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin-right: 10px; margin-left: auto;"
+      onclick="setGame()"><i class="fa-solid fa-rotate"></i></button>
   </div>
   <h2>SCORE</h2>
   <h3 id="score"></h3><br>
   <div id=board></div>
   <div id=buttonTable>
-    <button id="qKey" class="slideButton" style="margin-left: 0;" onclick="silde(81)"> Q </button>   
-    <button id="wKey" class="slideButton" onclick="silde(87)"> W </button>          
-    <button id="eKey" class="slideButton" style="margin-right: 0;" onclick="silde(69)"> E </button>     
-    <button id="aKey" class="slideButton" style="margin-left: 0;" onclick="silde(65)"> A </button>     
+    <button id="qKey" class="slideButton" style="margin-left: 0;" onclick="silde(81)"> Q </button>
+    <button id="wKey" class="slideButton" onclick="silde(87)"> W </button>
+    <button id="eKey" class="slideButton" style="margin-right: 0;" onclick="silde(69)"> E </button>
+    <button id="aKey" class="slideButton" style="margin-left: 0;" onclick="silde(65)"> A </button>
     <button id="sKey" class="slideButton" onclick="silde(83)"> S </button>
     <button id="dKey" class="slideButton" style="margin-right: 0;" onclick="silde(68)"> D </button>
   </div>
@@ -34,14 +37,15 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button id="closeButton" class="slideButton" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button><br>
+          <button id="closeButton" class="slideButton" onclick="closePopup()"><i
+              class="fa-solid fa-xmark"></i></button><br>
         </div><br>
         <h2 style="font-size: 48px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div>
-        <h2>Max tiles : <div id="maxTiles" style="display: inline;"></div>
-        </h2><br>
-        <button class="slideButton"  onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>
-        <button class="slideButton"  onclick="Sharing()"> <i class="fa-brands fa-twitter"></i> </button>
+          <h2>Max tiles : <div id="maxTiles" style="display: inline;"></div>
+          </h2><br>
+          <button class="slideButton" onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>
+          <button class="slideButton" onclick="Sharing()"> <i class="fa-brands fa-twitter"></i> </button>
       </div>
     </div>
   </div>
@@ -50,61 +54,131 @@
     <div class="windowQuestion">
       <div class="popupQuestion">
         <div style="display: flex;">
-          <button id="closeButtonQuestion" class="slideButton" onclick="closePopupQuestion()"><i class="fa-solid fa-xmark"></i></button><br>
+          <button id="closeButtonQuestion" class="slideButton" onclick="closePopupQuestion()"><i
+              class="fa-solid fa-xmark"></i></button><br>
         </div>
-        <div class="QuestionSet">
+        <div class="questionSet">
 
           <div class="questionTileSet">
             <div class="questionKey">Q</div>
             <div class="tileExample">
-              <div class="t3D"><div class="textD">3</div></div>
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
               <div class="tU"></div>
             </div>
-            <div class="questionKey"><i class="fa-solid fa-up-right-and-down-left-from-center fa-rotate-90" style="margin-top: 9px;"></i></div>
+            <div class="questionKey" style="font-size: 32px;">↖</div>
             <div class="tileExample">
               <div class="tD"></div>
-              <div class="t3U"><div class="textU">3</div></div>
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
             </div>
-            <div class="questionKey" style="margin-top: 15px;">D</div>
           </div>
 
           <div class="questionTileSet">
             <div class="questionKey">W</div>
             <div class="tileExample">
               <div class="tileLess"></div>
-              <div class="t3U"><div class="textU">3</div></div>
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
               <div class="tileLess"></div>
               <div class="tileLess"></div>
               <div class="tD"></div>
               <div class="tileLess"></div>
             </div>
-            <div class="questionKey"><i class="fa-solid fa-up-down" style="margin-top: 9px;"></i></div>
+            <div class="questionKey" style="font-size: 48px;">↑</div>
             <div class="tileExample">
               <div class="tileLess"></div>
               <div class="tU"></div>
               <div class="tileLess"></div>
               <div class="tileLess"></div>
-              <div class="t3D"><div class="textD">3</div></div>
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
               <div class="tileLess"></div>
             </div>
-            <div class="questionKey" style="margin-top: 15px;">S</div>
           </div>
 
           <div class="questionTileSet">
             <div class="questionKey">E</div>
             <div class="tileExample">
               <div class="tU"></div>
-              <div class="t3D"><div class="textD">3</div></div>
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
             </div>
-            <div class="questionKey"><i class="fa-solid fa-up-right-and-down-left-from-center" style="margin-top: 9px;"></i></div>
+            <div class="questionKey" style="font-size: 32px;">↗</div>
             <div class="tileExample">
-              <div class="t3U"><div class="textU">3</div></div>
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
               <div class="tD"></div>
             </div>
-            <div class="questionKey" style="margin-top: 15px;">A</div>
           </div>
 
-          </div> 
+          <hr class="questionBar" style="width: 100%;">
+
+
+          <div class="questionTileSet">
+            <div class="tileExample">
+              <div class="tU"></div>
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
+            </div>
+            <div class="questionKey" style="font-size: 32px;">↙</div>
+            <div class="tileExample">
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
+              <div class="tD"></div>
+            </div>
+            <div class="questionKey" style="margin-top: 10px;">A</div>
+          </div>
+
+          <div class="questionTileSet">
+            <div class="tileExample">
+              <div class="tileLess"></div>
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
+              <div class="tileLess"></div>
+              <div class="tileLess"></div>
+              <div class="tD"></div>
+              <div class="tileLess"></div>
+            </div>
+            <div class="questionKey" style="font-size: 48px;">↓</div>
+            <div class="tileExample">
+              <div class="tileLess"></div>
+              <div class="tU"></div>
+              <div class="tileLess"></div>
+              <div class="tileLess"></div>
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
+              <div class="tileLess"></div>
+            </div>
+            <div class="questionKey" style="margin-top: 10px;">S</div>
+          </div>
+
+          <div class="questionTileSet">
+            <div class="tileExample">
+              <div class="t3D">
+                <div class="textD">3</div>
+              </div>
+              <div class="tU"></div>
+            </div>
+            <div class="questionKey" style="font-size: 32px;">↘</div>
+            <div class="tileExample">
+              <div class="tD"></div>
+              <div class="t3U">
+                <div class="textU">3</div>
+              </div>
+            </div>
+            <div class="questionKey" style="margin-top: 10px;">D</div>
+          </div>
         </div>
       </div>
     </div>
@@ -114,20 +188,26 @@
   <div class="backgroundSetting">
     <div class="windowSetting">
       <div class="popupSetting">
-        <div style="font-size: 36px;">Setting</div><hr>
+        <div style="font-size: 36px;">Setting</div>
+        <hr>
         <div class="menuBlock">HARD MODE</div>
-        <div class="menuBlock">DARK MODE</div><hr>
+        <div class="menuBlock">DARK MODE</div>
+        <hr>
         <h3>
           Thanks for playing!<br>
           Send your inquiries to the @3072app for Twitter<br>
           Project Repository: github.com/heojinhyuk/3027
-        </h3><hr>
+        </h3>
+        <hr>
         <div style="display: flex;">
-          <button class="slideButton" style="width: 45px; border-radius:50%; margin-left: 15%;" onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
-          <button class="slideButton" style="width: 45px; border-radius:50%; margin-right: 15%;" onclick="Sharing()"><i class="fa-solid fa-share"></i></button>
+          <button class="slideButton" style="width: 45px; border-radius:50%; margin-left: 15%;"
+            onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
+          <button class="slideButton" style="width: 45px; border-radius:50%; margin-right: 15%;" onclick="Sharing()"><i
+              class="fa-solid fa-share"></i></button>
         </div>
         <div style="display: flex;">
-          <button class="slideButton" style="margin-top: 10px;" onclick="closePopupSetting()"><i class="fa-solid fa-check"></i></button><br>
+          <button class="slideButton" style="margin-top: 10px;" onclick="closePopupSetting()"><i
+              class="fa-solid fa-check"></i></button><br>
         </div>
       </div>
     </div>
