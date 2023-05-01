@@ -11,7 +11,7 @@
 
 <body>
   <div id="menuBar">
-    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px; background-color: rgba(0, 0, 0, 0);" onclick="SettingMenu()"><i class="fa-solid fa-gear"></i></i></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;" onclick="settingPopup()"><i class="fa-solid fa-gear"></i></i></button>
     <h1>3072</h1>
     <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><i class="fa-solid fa-question"></i></button>
   </div>
@@ -110,11 +110,29 @@
     </div>
   </div>
 
-  <h3>
-    Thanks for playing!<br>
-    Send your inquiries to the @3072app for Twitter<br>
-    Project Repository: github.com/heojinhyuk/3027
-  </h3>
+
+  <div class="backgroundSetting">
+    <div class="windowSetting">
+      <div class="popupSetting">
+        <div style="font-size: 36px;">Setting</div><hr>
+        <div class="menuBlock">HARD MODE</div>
+        <div class="menuBlock">DARK MODE</div><hr>
+        <h3>
+          Thanks for playing!<br>
+          Send your inquiries to the @3072app for Twitter<br>
+          Project Repository: github.com/heojinhyuk/3027
+        </h3><hr>
+        <div style="display: flex;">
+          <button class="slideButton" style="width: 45px; border-radius:50%; margin-left: 15%;" onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
+          <button class="slideButton" style="width: 45px; border-radius:50%; margin-right: 15%;" onclick="Sharing()"><i class="fa-brands fa-twitter"></i></button>
+        </div>
+        <div style="display: flex;">
+          <button class="slideButton" style="margin-top: 10px;" onclick="closePopupSetting()"><i class="fa-solid fa-check"></i></button><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
