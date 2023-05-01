@@ -122,8 +122,15 @@ function closePopupQuestion() {
     document.querySelector(".backgroundQuestion").className = "backgroundQuestion";
 }
 
-function SettingMenu() {
+function settingPopup() {
+    document.querySelector(".backgroundSetting").className = "backgroundSetting showSetting";
+}
+function closePopupSetting() {
+    document.querySelector(".backgroundSetting").className = "backgroundSetting";
+}
 
+function openRepositories(){
+    window.open("https://github.com/heojinhyuk/3027", "_blank");
 }
 
 function Sharing() {
@@ -131,7 +138,10 @@ function Sharing() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             if (board[r][c] >= 0) {
-                if (board[r][c] <= 6) {
+                if(board[r][c] == 0){
+                    text += "0⃣" // 0블럭
+                }
+                else if (board[r][c] <= 6) {
                     text += "⬜️" // 흰색
                 }
                 else if (board[r][c] <= 12) {
