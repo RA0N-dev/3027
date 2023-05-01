@@ -615,8 +615,8 @@ h3 {
     font-style: bold;
     display: inline;
 
-    width: 315px;
-    height: 412px;
+    width: 304px;
+    height: 615px;
 
     transform: translate(-50%, -40%);
     border-radius: 10px;
@@ -637,12 +637,12 @@ h3 {
     border: none;
 }
 
-.QuestionSet {
-    width: 315px;
-    height: 360px;
+.questionSet {
+    width: 272px;
+    height: 535px;
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+    margin: 16px;
 }
 
 .questionKey {
@@ -653,7 +653,7 @@ h3 {
 
 .questionTileSet {
     width: 70px;
-    height: 290px;
+    height: 250px;
     color: #766e66;
     display: flex;
     flex-wrap: wrap;
@@ -825,4 +825,12 @@ h3 {
     font-size: 24px;
     display: flex;
     margin: 3px 0px;
+}
+
+.questionBar{
+    width: 100%;
+    height: 3px;
+    background-color: #8F7A65;
+    border: None;
+
 }
