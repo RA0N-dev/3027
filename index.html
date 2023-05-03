@@ -191,28 +191,31 @@
         <div style="font-size: 36px; width: 102px; height: 36px; margin: 0 69px;">Setting</div>
         <hr>
         <div class="menuBlock">HARD MODE
-
-          <input type="checkbox" id="toggleHard" hidden> 
-          <label for="toggle" class="toggleSwitch hardMode">
-            <span class="toggleButton"></span>
-          </label>
+          <div style="margin: 1px auto 5px auto;" onclick="checkHardMode()">
+            <label for="toggle" class="toggleSwitch">
+              <span class="toggleButton"></span>
+            </label>
+          </div>
 
         </div>
         <div class="menuBlock">DARK MODE
-
-          <input type="checkbox" id="toggleDark" hidden> 
           <label for="toggle" class="toggleSwitch darkMode">
             <span class="toggleButton"></span>
           </label>
 
         </div>
         <div style="display: flex; flex-wrap: wrap; width: 280px; margin-bottom: 16px; margin-top: 16px;">
-          <button class="slideButton" style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: 15px; margin-right: auto; " onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
-          <button class="slideButton" style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: auto; " onclick="openTwitter()"><i class="fa-brands fa-twitter"></i></button>
-          <button class="slideButton" style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: 15px; " onclick="Sharing()"><i class="fa-solid fa-share"></i></button>
+          <button class="slideButton"
+            style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: 15px; margin-right: auto; "
+            onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
+          <button class="slideButton"
+            style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: auto; "
+            onclick="openTwitter()"><i class="fa-brands fa-twitter"></i></button>
+          <button class="slideButton"
+            style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: 15px; "
+            onclick="Sharing()"><i class="fa-solid fa-share"></i></button>
         </div>
-        <button class="slideButton" onclick="closePopupSetting()"><i
-          class="fa-solid fa-check"></i></button><br>
+        <button class="slideButton" onclick="closePopupSetting()"><i class="fa-solid fa-check"></i></button><br>
       </div>
     </div>
   </div>
