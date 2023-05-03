@@ -14,6 +14,7 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 [-1, 0, 0, 0, 0, 0, -1],
 [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
+var hardMode = false;
 
 function setGame() {
     board = [[-1, -1, -1, 0, -1, -1, -1],
@@ -380,9 +381,17 @@ function setNewTile() {
     if (!(hasEmptyTile())) { return false; }
     let found = false;
     let newTileNum = 0;
-    if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
-    else if (gameScore >= 100) { newTileNum = 6; deldteTile(3); }
-    else { newTileNum = 3; }
+    if(hardMode == true){
+        if (gameScore >= 10000) { newTileNum = 12; deldteTile(6); }
+        else if (gameScore >= 1000) { newTileNum = 6; deldteTile(3); }
+        else { newTileNum = 3; }
+    }
+    else{
+        if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
+        else if (gameScore >= 100) { newTileNum = 6; deldteTile(3); }
+        else { newTileNum = 3; }
+    }
+    
     while (!(found)) {
         let r = Math.floor(Math.random() * rows);
         let c = Math.floor(Math.random() * columns);
@@ -421,4 +430,7 @@ function hasEmptyTile() {
     }
     gameOverChack();
     return false;
+}
+function checkHardMode(){
+    hardMode = hardMode?false:true;
 }
