@@ -1,5 +1,12 @@
 window.onload = function () { setGame(); }
 
+const toggleList = document.querySelectorAll(".toggleSwitch");
+toggleList.forEach(($toggle) => {
+  $toggle.onclick = () => {
+    $toggle.classList.toggle('active');
+  }
+});
+
 var rows = 4;
 var columns = 7;
 var board = [[-1, -1, -1, 0, -1, -1, -1],
