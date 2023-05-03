@@ -188,10 +188,24 @@
   <div class="backgroundSetting">
     <div class="windowSetting">
       <div class="popupSetting">
-        <div style="font-size: 36px; width: 102px; height: 36px; margin: 0 89px;">Setting</div>
+        <div style="font-size: 36px; width: 102px; height: 36px; margin: 0 69px;">Setting</div>
         <hr>
-        <div class="menuBlock">HARD MODE</div>
-        <div class="menuBlock">DARK MODE</div>
+        <div class="menuBlock">HARD MODE
+
+          <input type="checkbox" id="toggleHard" hidden> 
+          <label for="toggle" class="toggleSwitch hardMode">
+            <span class="toggleButton"></span>
+          </label>
+
+        </div>
+        <div class="menuBlock">DARK MODE
+
+          <input type="checkbox" id="toggleDark" hidden> 
+          <label for="toggle" class="toggleSwitch darkMode">
+            <span class="toggleButton"></span>
+          </label>
+
+        </div>
         <div style="display: flex; flex-wrap: wrap; width: 280px; margin-bottom: 16px; margin-top: 16px;">
           <button class="slideButton" style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: 15px; margin-right: auto; " onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
           <button class="slideButton" style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: auto; " onclick="openTwitter()"><i class="fa-brands fa-twitter"></i></button>
