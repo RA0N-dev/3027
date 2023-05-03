@@ -133,6 +133,10 @@ function openRepositories(){
     window.open("https://github.com/heojinhyuk/3027", "_blank");
 }
 
+function openTwitter(){
+    window.open("https://twitter.com/3072app", "_blank");
+}
+
 function Sharing() {
     var text = "     \n";
     for (let r = 0; r < rows; r++) {
