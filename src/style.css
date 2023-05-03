@@ -12,6 +12,13 @@ body {
     font-style: bold;
 }
 
+hr{
+    width: 100%;
+    height: 1px;
+    background-color: #766e66;
+    border: none;
+    margin: 10px 0;
+}
 
 h1 {
     font-size: 60px;
@@ -813,6 +820,9 @@ h3 {
 
     transform: translate(-50%, -40%);
     border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px;
 }
 
 .showSetting .popupSetting {
@@ -822,6 +832,8 @@ h3 {
 }
 
 .menuBlock{
+    width: 896px;
+    height: 30px;
     font-size: 24px;
     display: flex;
     margin: 3px 0px;
