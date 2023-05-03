@@ -188,33 +188,26 @@
   <div class="backgroundSetting">
     <div class="windowSetting">
       <div class="popupSetting">
-        <div style="font-size: 36px;">Setting</div>
+        <div style="font-size: 36px; width: 102px; margin: 0 89px;">Setting</div>
         <hr>
         <div class="menuBlock">HARD MODE</div>
         <div class="menuBlock">DARK MODE</div>
+        <hr>
+        <div style="display: flex; flex-wrap: wrap; width: 280px;">
+          <button class="slideButton" style="width: 45px; height:45px; border-radius:50%; margin-left: 45px; margin-right: auto; " onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
+          <button class="slideButton" style="width: 45px; height:45px; border-radius:50%; margin-left: auto; margin-right: 45px; " onclick="Sharing()"><i class="fa-solid fa-share"></i></button>
+        </div>
         <hr>
         <h3>
           Thanks for playing!<br>
           Send your inquiries to the @3072app for Twitter<br>
           Project Repository: github.com/heojinhyuk/3027
         </h3>
-        <hr>
-        <div style="display: flex;">
-          <button class="slideButton" style="width: 45px; border-radius:50%; margin-left: 15%;"
-            onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
-          <button class="slideButton" style="width: 45px; border-radius:50%; margin-right: 15%;" onclick="Sharing()"><i
-              class="fa-solid fa-share"></i></button>
-        </div>
-        <div style="display: flex;">
-          <button class="slideButton" style="margin-top: 10px;" onclick="closePopupSetting()"><i
-              class="fa-solid fa-check"></i></button><br>
-        </div>
+        <button class="slideButton" style="margin-top: auto; margin-bottom: 0px;" onclick="closePopupSetting()"><i
+          class="fa-solid fa-check"></i></button><br>
       </div>
     </div>
   </div>
-
-
-
 
   <script src="src/game.js" type="text/javascript"></script>
   <script>device_checking()</script>
