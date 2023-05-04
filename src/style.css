@@ -562,7 +562,7 @@ h3 {
 }
 
 .tileExample {
-    border-left: 17.5px solid #faf8ef;
+    border-left: 17.5px solid rgba(0, 0, 0, 0);
     width: 70px;
     height: 70px;
     margin: 0 auto 0 auto;
