@@ -33,14 +33,14 @@
     <button id="dKey" class="slideButton" style="margin-right: 0;" onclick="silde(68)"> D </button>
   </div>
 
-  <div class="background">
+  <div id="gameOverPopup" class="background">
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
           <button id="closeButton" class="slideButton" onclick="closePopup()"><i
               class="fa-solid fa-xmark"></i></button><br>
         </div><br>
-        <h2 style="font-size: 48px;">GameOver!</h2>
+        <h2 style="font-size: 36px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div>
           <h2>Max tiles : <div id="maxTiles" style="display: inline;"></div>
           </h2><br>
@@ -50,8 +50,8 @@
     </div>
   </div>
 
-  <div class="backgroundQuestion">
-    <div class="windowQuestion">
+  <div id="questionPopup" class="background">
+    <div class="window">
       <div class="popupQuestion">
         <div style="display: flex;">
           <button id="closeButtonQuestion" class="slideButton" onclick="closePopupQuestion()"><i
@@ -185,11 +185,11 @@
   </div>
 
 
-  <div class="backgroundSetting">
-    <div class="windowSetting">
-      <div class="popupSetting">
+  <div id="settingPopup" class="background">
+    <div class="window">
+      <div class="popup" style="display: flex; flex-wrap: wrap;">
         <div style="font-size: 36px; width: 102px; height: 36px; margin: 0 69px;">Setting</div>
-        <hr>
+        <hr style="margin: 10px 0;">
         <div class="menuBlock">HARD MODE
           <div style="margin: 1px auto 5px auto;" onclick="checkHardMode()">
             <label for="toggle" class="toggleSwitch">
