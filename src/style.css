@@ -224,7 +224,7 @@ h3 {
 }
 .dark .t6U {
     border-bottom: 70px solid #302c29;
-    color: #2b2825;
+    color: #dad8d5;
 }
 
 .t6D {
@@ -232,25 +232,25 @@ h3 {
     color: #766e66;
 }.dark .t6D {
     border-top: 70px solid #302c29;
-    color: #2b2825;
+    color: #dad8d5;
 }
 
 .t12U {
-    border-bottom: 70px solid #e9b280; 
+    border-bottom: 70px solid #eeb886; 
     color: #f9f6f2;
 }
 .dark .t12U{
     border-bottom: 70px solid #383531; 
-    color: #b5afa9;
+    color: #dad8d5;
 }
 
 .t12D {
-    border-top: 70px solid #e9b280; 
+    border-top: 70px solid #eeb886; 
     color: #f9f6f2;
 }
 .dark .t12D {
     border-top: 70px solid #383531; 
-    color: #b5afa9;
+    color: #dad8d5;
 }
 
 .t24U {
@@ -259,7 +259,7 @@ h3 {
 }
 .dark .t24U {
     border-bottom: 70px solid #5b554f;
-    color: #a9a39c;
+    color: #dad8d5;
 }
 
 .t24D {
@@ -268,7 +268,7 @@ h3 {
 }
 .dark .t24D {
     border-top: 70px solid #5b554f;
-    color: #a9a39c;
+    color: #dad8d5;
 }
 
 .t48U {
@@ -276,8 +276,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t48U {
-    border-bottom: 70px solid #645d57;
-    color: #8f867e;
+    border-bottom: 70px solid #6c6660;
+    color: #dad8d5;
 }
 
 .t48D {
@@ -285,8 +285,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t48D {
-    border-top: 70px solid #645d57;
-    color: #8f867e;
+    border-top: 70px solid #6c6660;
+    color: #dad8d5;
 }
 
 .t96U {
@@ -295,7 +295,7 @@ h3 {
 }
 .dark .t96U {
     border-bottom: 70px solid #877e75;
-    color: #827a71;
+    color: #dad8d5;
 }
 
 .t96D {
@@ -304,7 +304,7 @@ h3 {
 }
 .dark .t96D {
     border-top: 70px solid #877e75;
-    color: #827a71;
+    color: #dad8d5;
 }
 
 .t192U {
@@ -313,7 +313,7 @@ h3 {
 }
 .dark .t192U {
     border-bottom: 70px solid #8f867e;
-    color: #645d57;
+    color: #dad8d5;
 }
 
 .t192D {
@@ -322,7 +322,7 @@ h3 {
 }
 .dark .t192D {
     border-top: 70px solid #8f867e;
-    color: #645d57;
+    color: #dad8d5;
 }
 
 .t384U {
@@ -331,7 +331,7 @@ h3 {
 }
 .dark .t384U {
     border-bottom: 70px solid #ada7a1;
-    color: #57514b;
+    color: #f9f6f2;
 }
 
 .t384D {
@@ -340,7 +340,7 @@ h3 {
 }
 .dark .t384D {
     border-top: 70px solid #ada7a1;
-    color: #57514b;
+    color: #f9f6f2;
 }
 
 .t768U {
