@@ -9,7 +9,7 @@
   <script src="https://kit.fontawesome.com/bf4d115447.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="">
   <div id="menuBar">
     <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;"
       onclick="settingPopup()"><i class="fa-solid fa-gear"></i></i></button>
@@ -186,20 +186,20 @@
           <td>100</td>
           <td>1000</td>
           <td>10000</td>
-          <tr><!-- 첫번째 줄 시작 -->
+          <tr>
               <td>Normal</td>
               <td>3</td>
               <td>6</td>
               <td>12</td>
               <td>24</td>
-          </tr><!-- 첫번째 줄 끝 -->
-          <tr><!-- 두번째 줄 시작 -->
+          </tr>
+          <tr>
               <td>Hard</td>
               <td>3</td>
               <td>6</td>
               <td>12</td>
               <td>12</td>
-          </tr><!-- 두번째 줄 끝 -->
+          </tr>
         </table>
 
       </div>
@@ -221,9 +221,11 @@
 
         </div>
         <div class="menuBlock">DARK MODE
-          <label for="toggle" class="toggleSwitch darkMode">
-            <span class="toggleButton"></span>
-          </label>
+          <div style="margin: 1px auto 5px auto;" onclick="checkDarkMode()">
+            <label for="toggle" class="toggleSwitch darkMode">
+              <span class="toggleButton"></span>
+            </label>
+          </div>
 
         </div>
         <div style="display: flex; flex-wrap: wrap; width: 280px; margin-bottom: 16px; margin-top: 16px;">
