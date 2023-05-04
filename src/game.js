@@ -15,7 +15,7 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
 var hardMode = false;
-var darkMode = true;
+var darkMode = false;
 
 function setGame() {
     board = [[-1, -1, -1, 0, -1, -1, -1],
