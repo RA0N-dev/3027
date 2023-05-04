@@ -15,7 +15,7 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
 var hardMode = false;
-var darkMode = false;
+var darkMode = true;
 
 function setGame() {
     board = [[-1, -1, -1, 0, -1, -1, -1],
@@ -181,7 +181,6 @@ function Sharing() {
     }
 
     text += "Score : " + gameScore.toString() + "\n";
-    text += "max tiles : ";
 
     let maxTile = 0;
     for (let r = 0; r < rows; r++) {
@@ -189,7 +188,11 @@ function Sharing() {
             if (maxTile < board[r][c]) { maxTile = board[r][c] }
         }
     }
-    text += maxTile + "\n" + "3072.app";
+    text += "max tiles : " +  maxTile + "\n" + "play mode : ";
+
+    text += (hardMode)?"HARD":"NORMAL" + "\n";
+
+    text +="\n" + "3072.app";
 
     var twitter_url =
         "https://twitter.com/intent/tweet?text=" +
