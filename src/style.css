@@ -135,8 +135,8 @@ h3 {
     color: #fdf6ef;
 }
 .dark .slideButton{
-    background-color: #b1aba5;
-    color: #34302d;
+    background-color: #dad8d5;
+    color: #0d0c0b;
 }
 
 .tileLess {
@@ -441,6 +441,24 @@ h3 {
     transform: translate(-50%, -40%);
     border-radius: 10px;
 }
+.dark .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5b554f;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    color: #0d0c0b;
+    padding: 16px;
+    font-size: 32px;
+    font-style: bold;
+
+    width: 240px;
+    height: 257px;
+
+    transform: translate(-50%, -40%);
+    border-radius: 10px;
+}
 
 .show .popup {
     transform: translate(-50%, -50%);
@@ -476,8 +494,27 @@ h3 {
     font-style: bold;
     display: inline;
 
-    width: 304px;
-    height: 613px;
+    width: 274px;
+    height: 533px;
+
+    transform: translate(-50%, -40%);
+    border-radius: 10px;
+}
+.dark .popupQuestion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5b554f;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    color: #0d0c0b;
+    padding: 16px;
+    font-size: 32px;
+    font-style: bold;
+    display: inline;
+
+    width: 274px;
+    height: 533px;
 
     transform: translate(-50%, -40%);
     border-radius: 10px;
@@ -499,11 +536,11 @@ h3 {
 }
 
 .questionSet {
-    width: 272px;
-    height: 446px;
+    width: 273px;
+    height: 456px;
     display: flex;
     flex-wrap: wrap;
-    margin: 16px;
+    margin-top: 16px;
 }
 
 .questionKey {
@@ -514,7 +551,7 @@ h3 {
 
 .questionTileSet {
     width: 70px;
-    height: 205px;
+    height: 210px;
     color: #766e66;
     display: flex;
     flex-wrap: wrap;
