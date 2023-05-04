@@ -8,6 +8,7 @@ html, body {
     font-style: bold;
 }
 
+
 hr {
     width: 100%;
     height: 3px;
@@ -61,7 +62,7 @@ h3 {
     width: 100%;
     height: 60px;
     background-color: #faf8ef;
-    border-bottom: 5px solid #766e66;
+    border-bottom: 5px solid #8F7A65;
     border-top: 5px solid rgba(0, 0, 0, 0);
     margin: 0;
     display: flex;
@@ -90,6 +91,12 @@ h3 {
     position: relative;
 }
 
+#newTileTable{
+    font-size: 20px;
+    width: 272px;
+    margin: auto;
+}
+
 .slideButton {
     background-color: #8F7A65;
     color: #766e66;
@@ -99,7 +106,7 @@ h3 {
     border: none;
     border-radius: 10px;
     margin: auto;
-    color: #FDF6EF;
+    color: #fdf6ef;
 }
 
 .tileLess {
@@ -369,7 +376,7 @@ h3 {
 
 .questionSet {
     width: 272px;
-    height: 524px;
+    height: 446px;
     display: flex;
     flex-wrap: wrap;
     margin: 16px;
@@ -377,13 +384,13 @@ h3 {
 
 .questionKey {
     width: 50px;
-    height: 50px;
+    height: 35px;
     margin: 0 auto;
 }
 
 .questionTileSet {
     width: 70px;
-    height: 250px;
+    height: 205px;
     color: #766e66;
     display: flex;
     flex-wrap: wrap;
