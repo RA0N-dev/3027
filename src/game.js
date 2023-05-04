@@ -329,10 +329,12 @@ function sildeTile(sendR, sendC, targetR, targetC, reverse = false) {
             deldteChild(sendTile.id);
             if (chackReverseTriangle(targetR, targetC)) {
                 targetTile.classList.remove(...targetTile.classList);
+                targetTile.classList.add("tD");
                 targetTile.classList.add("t" + board[targetR][targetC] + "D");
             }
             else {
                 targetTile.classList.remove(...targetTile.classList);
+                targetTile.classList.add("tU");
                 targetTile.classList.add("t" + board[targetR][targetC] + "U");
             }
             deldteChild(targetTile.id);
@@ -400,11 +402,11 @@ function setNewTile() {
             let tile = document.getElementById(r.toString() + "-" + c.toString());
 
             if (chackReverseTriangle(r, c)) {
-                tile.classList.remove("tD");
+                //tile.classList.remove("tD");
                 tile.classList.add("t" + newTileNum + "D");
             }
             else {
-                tile.classList.remove("tU");
+                //tile.classList.remove("tU");
                 tile.classList.add("t" + newTileNum + "U");
             }
 
