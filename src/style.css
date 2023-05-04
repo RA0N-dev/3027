@@ -1,11 +1,7 @@
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-}
-
-body {
     font-family: Consolas, 'Times New Roman';
     text-align: center;
     background-color: #faf8ef;
@@ -16,8 +12,7 @@ hr {
     width: 100%;
     height: 3px;
     background-color: #8F7A65;
-    border: none;
-    margin: 10px 0;
+    border: None;
 }
 
 h1 {
@@ -309,8 +304,8 @@ h3 {
     font-size: 32px;
     font-style: bold;
 
-    width: 280px;
-    height: 280px;
+    width: 240px;
+    height: 257px;
 
     transform: translate(-50%, -40%);
     border-radius: 10px;
@@ -331,30 +326,10 @@ h3 {
     border: none;
 }
 
-
-.backgroundQuestion {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-
-    z-index: -1;
-    opacity: 0;
-}
-
-.showQuestion {
+.show {
     opacity: 1;
     z-index: 1000;
     transition: all .5s;
-}
-
-.windowQuestion {
-    position: relative;
-    width: 100%;
-    height: 100%;
 }
 
 .popupQuestion {
@@ -377,7 +352,7 @@ h3 {
     border-radius: 10px;
 }
 
-.showQuestion .popupQuestion {
+.show .popupQuestion {
     transform: translate(-50%, -50%);
     transition: all .5s;
     align-items: left;
@@ -444,7 +419,7 @@ h3 {
 }
 
 
-.tileExample .t3U .textU {
+.tileExample .textU {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -456,7 +431,7 @@ h3 {
     z-index: 3;
 }
 
-.tileExample .t3D .textD {
+.tileExample .textD {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -525,73 +500,12 @@ h3 {
     color: #766e66;
 }
 
-
-.backgroundSetting {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-
-    z-index: -1;
-    opacity: 0;
-}
-
-.showSetting {
-    opacity: 1;
-    z-index: 1000;
-    transition: all .5s;
-}
-
-.windowSetting {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.popupSetting {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #faf8ef;
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-    color: #766e66;
-    padding: 16px;
-    font-size: 32px;
-    font-style: bold;
-
-    width: 240px;
-    height: 254px;
-
-    transform: translate(-50%, -40%);
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.showSetting .popupSetting {
-    transform: translate(-50%, -50%);
-    transition: all .5s;
-    align-items: left;
-}
-
 .menuBlock {
     width: 896px;
     height: 30px;
     font-size: 24px;
     display: flex;
     margin: 3px 0px 3px 16px;
-}
-
-.questionBar {
-    width: 100%;
-    height: 3px;
-    background-color: #8F7A65;
-    border: None;
-
 }
 
 .toggleSwitch {
