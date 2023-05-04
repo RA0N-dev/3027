@@ -15,18 +15,22 @@ var board = [[-1, -1, -1, 0, -1, -1, -1],
 [0, 0, 0, 0, 0, 0, 0]];
 var gameScore = 0;
 var hardMode = false;
+var darkMode = false;
 
 function setGame() {
     board = [[-1, -1, -1, 0, -1, -1, -1],
     [-1, -1, 0, 0, 0, -1, -1],
     [-1, 0, 0, 0, 0, 0, -1],
     [0, 0, 0, 0, 0, 0, 0]];
-    /* testing
-    board =[[-1, -1, -1, 96, -1, -1, -1],
-            [-1, -1, 24, 48, 24, -1, -1],
-            [-1, 3, 12, 3, 12, 3, -1],
-            [3, 6, 3, 192, 3, 6, 3]];*/
+    /*//testing
+    board =[[-1, -1, -1, 3072, -1, -1, -1],
+            [-1, -1, 384, 1536, 768, -1, -1],
+            [-1, 192, 96, 48, 96, 192, -1],
+            [3, 6, 12, 24, 12, 6, 3]];*/
     gameScore = 0;
+    let body = document.getElementsByTagName("body");
+    if(darkMode){document.body.classList.add("dark");}
+    else{document.body.classList.remove("dark");}
     deldteChild("board");
     updateScore();
     closePopup();
@@ -435,5 +439,10 @@ function hasEmptyTile() {
 }
 function checkHardMode(){
     hardMode = hardMode?false:true;
+    setGame();
+}
+
+function checkDarkMode(){
+    darkMode = darkMode?false:true;
     setGame();
 }
