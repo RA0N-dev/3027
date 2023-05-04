@@ -117,24 +117,24 @@ function gameOverChack() {
 
 
 function openPopup() {
-    document.querySelector(".background").className = "background show";
+    document.getElementById("gameOverPopup").className = "background show";
 }
 function closePopup() {
-    document.querySelector(".background").className = "background";
+    document.getElementById("gameOverPopup").className = "background";
 }
 
 function questionGame() {
-    document.querySelector(".backgroundQuestion").className = "backgroundQuestion showQuestion";
+    document.getElementById("questionPopup").className = "background show";
 }
 function closePopupQuestion() {
-    document.querySelector(".backgroundQuestion").className = "backgroundQuestion";
+    document.getElementById("questionPopup").className = "background";
 }
 
 function settingPopup() {
-    document.querySelector(".backgroundSetting").className = "backgroundSetting showSetting";
+    document.getElementById("settingPopup").className = "background show";
 }
 function closePopupSetting() {
-    document.querySelector(".backgroundSetting").className = "backgroundSetting";
+    document.getElementById("settingPopup").className = "background";
 }
 
 function openRepositories(){
@@ -201,15 +201,14 @@ function updateTile(tile, num) {
     document.getElementById("board").append(tile);
     if (num == -1) { tile.classList.add("tileLess"); }
     else {
-        if (num == 0) {
-            if (chackReverseTriangle(r, c)) {
-                tile.classList.add("tD");
-            }
-            else {
-                tile.classList.add("tU");
-            }
+        if (chackReverseTriangle(r, c)) {
+            tile.classList.add("tD");
         }
-        else if (num < 3072) {
+        else {
+            tile.classList.add("tU");
+        }
+
+        if (num < 3072) {
             if (chackReverseTriangle(r, c)) {
                 tile.classList.remove();
                 tile.classList.add("t" + num.toString() + "D");
@@ -384,12 +383,13 @@ function setNewTile() {
     let found = false;
     let newTileNum = 0;
     if(hardMode == true){
-        if (gameScore >= 10000) { newTileNum = 12; deldteTile(6); }
-        else if (gameScore >= 1000) { newTileNum = 6; deldteTile(3); }
+        if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
+        else if (gameScore >= 100) { newTileNum = 6; deldteTile(3); }
         else { newTileNum = 3; }
     }
     else{
-        if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
+        if (gameScore >= 10000) { newTileNum = 24; deldteTile(12); }
+        else if (gameScore >= 1000) { newTileNum = 12; deldteTile(6); }
         else if (gameScore >= 100) { newTileNum = 6; deldteTile(3); }
         else { newTileNum = 3; }
     }
@@ -435,4 +435,5 @@ function hasEmptyTile() {
 }
 function checkHardMode(){
     hardMode = hardMode?false:true;
+    setGame();
 }
