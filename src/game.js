@@ -26,10 +26,10 @@ function setGame() {
     [-1, 0, 0, 0, 0, 0, -1],
     [0, 0, 0, 0, 0, 0, 0]];
     //testing
-    board =[[-1, -1, -1, 1536, -1, -1, -1],
+    /*board =[[-1, -1, -1, 3072, -1, -1, -1],
             [-1, -1, 384, 1536, 768, -1, -1],
             [-1, 192, 96, 48, 96, 192, -1],
-            [3, 24, 12, 24, 12, 24, 3]];
+            [3, 6, 12, 24, 12, 6, 3]];*/
     gameScore = 0;
     let body = document.getElementsByTagName("body");
     if(darkMode){document.body.classList.add("dark");}
@@ -105,6 +105,7 @@ function gameOverChack() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             if (board[r][c] >= 0) {
+                if(board[r][c] == 0){return false;}
                 if (chackReverseTriangle(r, c)) {
                     if (board[r][c] == board[r - 1][c] || board[r][c] == board[r][c - 1] || board[r][c] == board[r][c + 1]) {
                         return false;
