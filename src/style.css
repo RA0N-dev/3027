@@ -9,7 +9,7 @@ html, body {
 }
 
 .dark{
-    background-color: #080807;
+    background-color: #000000;
 }
 
 
@@ -20,7 +20,7 @@ hr {
     border: None;
 }
 .dark hr{
-    background-color: #b1aba5;
+    background-color: #ffffff;
 }
 
 h1 {
@@ -31,7 +31,7 @@ h1 {
     margin: 0;
 }
 .dark h1{
-    color: #d7d4d1;
+    color: #ffffff;
 }
 
 h2 {
@@ -42,7 +42,7 @@ h2 {
     margin: 0 auto;
 }
 .dark h2{
-    color: #d8d5d1;
+    color: #ffffff;
 }
 
 h3 {
@@ -52,7 +52,7 @@ h3 {
     margin: 0 auto;
 }
 .dark h3{
-    color: #d8d5d1;
+    color: #ffffff;
 }
 
 #score {
@@ -62,13 +62,13 @@ h3 {
     color: #766e66
 }
 .dark #score{
-    color: #d8d5d1
+    color: #ffffff
 }
 
 #board {
     width: 245px;
     height: 280px;
-    border-left: 35px solid #faf8ef;
+    border-left: 35px solid rgba(0, 0, 0, 0);
     margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -77,7 +77,7 @@ h3 {
     position: relative;
 }
 .dark #board{
-    border-left: 35px solid #080807;
+    border-left: 35px solid rgba(0, 0, 0, 0);
 }
 
 #menuBar {
@@ -91,8 +91,8 @@ h3 {
     align-items: space-between;
 }
 .dark #menuBar{
-    background-color: #080807;
-    border-bottom: 5px solid #b1aba5;
+    background-color: #000000;
+    border-bottom: 5px solid #ffffff;
     border-top: 5px solid rgba(0, 0, 0, 0);
 }
 
@@ -135,8 +135,8 @@ h3 {
     color: #fdf6ef;
 }
 .dark .slideButton{
-    background-color: #dad8d5;
-    color: #0d0c0b;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .tileLess {
@@ -178,7 +178,7 @@ h3 {
     pointer-events: none;
 }
 .dark .tU{
-    border-bottom: 70px solid #8b8279;
+    border-bottom: 70px solid #222222;
 }
 
 .tD {
@@ -197,7 +197,7 @@ h3 {
     pointer-events: none;
 }
 .dark .tD{
-    border-top: 70px solid #8b8279;
+    border-top: 70px solid #222222;
 }
 
 .t3U {
@@ -205,8 +205,8 @@ h3 {
     color: #766e66;
 }
 .dark .t3U{
-    border-bottom: 70px solid #0d0c0b;
-    color: #dad8d5;
+    border-bottom: 70px solid #333333;
+    color: #ffffff;
 }
 
 .t3D {
@@ -214,8 +214,8 @@ h3 {
     color: #766e66;
 }
 .dark .t3D{
-    border-top: 70px solid #0d0c0b;
-    color: #dad8d5;
+    border-top: 70px solid #333333;
+    color: #ffffff;
 }
 
 .t6U {
@@ -223,16 +223,16 @@ h3 {
     color: #766e66;
 }
 .dark .t6U {
-    border-bottom: 70px solid #302c29;
-    color: #dad8d5;
+    border-bottom: 70px solid #333333;
+    color: #ffffff;
 }
 
 .t6D {
     border-top: 70px solid #ebdfc9; 
     color: #766e66;
 }.dark .t6D {
-    border-top: 70px solid #302c29;
-    color: #dad8d5;
+    border-top: 70px solid #333333;
+    color: #ffffff;
 }
 
 .t12U {
@@ -240,8 +240,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t12U{
-    border-bottom: 70px solid #383531; 
-    color: #dad8d5;
+    border-bottom: 70px solid #666666; 
+    color: #ffffff;
 }
 
 .t12D {
@@ -249,8 +249,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t12D {
-    border-top: 70px solid #383531; 
-    color: #dad8d5;
+    border-top: 70px solid #666666; 
+    color: #ffffff;
 }
 
 .t24U {
@@ -258,8 +258,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t24U {
-    border-bottom: 70px solid #5b554f;
-    color: #dad8d5;
+    border-bottom: 70px solid #666666;
+    color: #ffffff;
 }
 
 .t24D {
@@ -267,8 +267,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t24D {
-    border-top: 70px solid #5b554f;
-    color: #dad8d5;
+    border-top: 70px solid #666666;
+    color: #ffffff;
 }
 
 .t48U {
@@ -276,8 +276,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t48U {
-    border-bottom: 70px solid #6c6660;
-    color: #dad8d5;
+    border-bottom: 70px solid #666666;
+    color: #ffffff;
 }
 
 .t48D {
@@ -285,8 +285,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t48D {
-    border-top: 70px solid #6c6660;
-    color: #dad8d5;
+    border-top: 70px solid #666666;
+    color: #ffffff;
 }
 
 .t96U {
@@ -294,8 +294,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t96U {
-    border-bottom: 70px solid #877e75;
-    color: #dad8d5;
+    border-bottom: 70px solid #999999;
+    color: #ffffff;
 }
 
 .t96D {
@@ -303,8 +303,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t96D {
-    border-top: 70px solid #877e75;
-    color: #dad8d5;
+    border-top: 70px solid #999999;
+    color: #ffffff;
 }
 
 .t192U {
@@ -312,8 +312,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t192U {
-    border-bottom: 70px solid #8f867e;
-    color: #dad8d5;
+    border-bottom: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t192D {
@@ -321,8 +321,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t192D {
-    border-top: 70px solid #8f867e;
-    color: #dad8d5;
+    border-top: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t384U {
@@ -330,8 +330,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t384U {
-    border-bottom: 70px solid #ada7a1;
-    color: #f9f6f2;
+    border-bottom: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t384D {
@@ -339,8 +339,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t384D {
-    border-top: 70px solid #ada7a1;
-    color: #f9f6f2;
+    border-top: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t768U {
@@ -348,8 +348,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t768U {
-    border-bottom: 70px solid #b5afa9;
-    color: #383531;
+    border-bottom: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t768D {
@@ -357,8 +357,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t768D {
-    border-top: 70px solid #b5afa9;
-    color: #383531;
+    border-top: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t1536U {
@@ -366,8 +366,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t1536U {
-    border-bottom: 70px solid #d3d0cc;
-    color: #2b2825;
+    border-bottom: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t1536D {
@@ -375,8 +375,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t1536D {
-    border-top: 70px solid #d3d0cc;
-    color: #2b2825;
+    border-top: 70px solid #cccccc;
+    color: #000000;
 }
 
 .t3072U {
@@ -384,8 +384,8 @@ h3 {
     color: #f9f6f2;
 }
 .dark .t3072U {
-    border-bottom: 70px solid #dad8d5;
-    color: #0d0c0b;
+    border-bottom: 70px solid #ffffff;
+    color: #000000;
 }
 
 .t3072D {
@@ -394,8 +394,8 @@ h3 {
 }
 .dark 
 .t3072D {
-    border-top: 70px solid #dad8d5;
-    color: #0d0c0b;
+    border-top: 70px solid #ffffff;
+    color: #000000;
 }
 
 .background {
@@ -446,9 +446,9 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #5b554f;
+    background-color: #666666;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-    color: #0d0c0b;
+    color: #ffffff;
     padding: 16px;
     font-size: 32px;
     font-style: bold;
@@ -505,9 +505,9 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #5b554f;
+    background-color: #666666;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-    color: #0d0c0b;
+    color: #ffffff;
     padding: 16px;
     font-size: 32px;
     font-style: bold;
