@@ -84,6 +84,21 @@ function chackReverseTriangle(r, c) {
     }
 }
 
+function gameWinchack(){
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (board[r][c] == 3072) {
+                openWinPopup();
+                deldteChild("winScore");
+                document.getElementById("winScore").append(gameScore);
+            
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function gameOverChack() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
@@ -150,7 +165,14 @@ function openTwitter(){
     window.open("https://twitter.com/3072app", "_blank");
 }
 
-function Sharing() {
+function openWinPopup() {
+    document.getElementById("gameWinPopup").className = "background show";
+}
+function closeWinPopup() {
+    document.getElementById("gameWinPopup").className = "background";
+}
+
+function sharing() {
     var text = "     \n";
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
@@ -190,6 +212,57 @@ function Sharing() {
         }
     }
     text += "max tiles : " +  maxTile + "\n" + "play mode : ";
+
+    text += (hardMode)?"HARD":"NORMAL" + "\n";
+
+    text +="\n" + "3072.app";
+
+    var twitter_url =
+        "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(text);
+    window.open(twitter_url, "_blank");
+}
+
+function sharingWin(){
+    var text = "     \n";
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (board[r][c] >= 0) {
+                if(board[r][c] == 0){
+                    text += "0⃣" // 0블럭
+                }
+                else if (board[r][c] <= 6) {
+                    text += "⬜️" // 흰색
+                }
+                else if (board[r][c] <= 12) {
+                    text += "🟫"; //갈색
+                }
+                else if (board[r][c] <= 48) {
+                    text += "🟧"; //주황색  
+                }
+                else if (board[r][c] <= 96) {
+                    text += "🟥"; //빨간색
+                }
+                else {
+                    text += "🟨"; //노란색
+                }
+            } else {
+                text += "◼️";
+            }
+            text += " ";
+        }
+        text += "\n";
+    }
+
+    text += "Score : " + gameScore.toString() + "\n";
+
+    let maxTile = 0;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (maxTile < board[r][c]) { maxTile = board[r][c] }
+        }
+    }
+    text += "Made 3072 and won" + "\n" + "play mode : ";
 
     text += (hardMode)?"HARD":"NORMAL" + "\n";
 
@@ -436,7 +509,9 @@ function hasEmptyTile() {
             if (board[r][c] == 0) { return true; }
         }
     }
-    gameOverChack();
+    if(!gameWinchack()){
+        gameOverChack();
+    }
     return false;
 }
 function checkHardMode(){
