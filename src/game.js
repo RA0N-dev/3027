@@ -1,10 +1,11 @@
 window.onload = function () { setGame(); }
 
-const toggleList = document.querySelectorAll(".toggleSwitch");
-toggleList.forEach(($toggle) => {
-  $toggle.onclick = () => {
-    $toggle.classList.toggle('active');
-  }
+const toggleList = document.querySelectorAll('.toggleSwitch');
+
+toggleList.forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+  });
 });
 
 var rows = 4;
@@ -22,8 +23,8 @@ function setGame() {
     [-1, -1, 0, 0, 0, -1, -1],
     [-1, 0, 0, 0, 0, 0, -1],
     [0, 0, 0, 0, 0, 0, 0]];
-    /*//testing
-    board =[[-1, -1, -1, 3072, -1, -1, -1],
+    //testing
+    /*board =[[-1, -1, -1, 3072, -1, -1, -1],
             [-1, -1, 384, 1536, 768, -1, -1],
             [-1, 192, 96, 48, 96, 192, -1],
             [3, 6, 12, 24, 12, 6, 3]];*/
@@ -409,11 +410,9 @@ function setNewTile() {
             let tile = document.getElementById(r.toString() + "-" + c.toString());
 
             if (chackReverseTriangle(r, c)) {
-                //tile.classList.remove("tD");
                 tile.classList.add("t" + newTileNum + "D");
             }
             else {
-                //tile.classList.remove("tU");
                 tile.classList.add("t" + newTileNum + "U");
             }
 
