@@ -822,3 +822,9 @@ h3 {
 .dark .toggleSwitch .darkMode .toggleButton {
     background: #faf8ef;
 }
+
+.popupButtonTable{
+    width: 45;
+    height: 240;
+    margin-bottom: 10px;
+}
