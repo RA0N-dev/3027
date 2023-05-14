@@ -18,18 +18,20 @@ var gameScore = 0;
 var hardMode = false;
 var darkMode = false;
 var gameWon = false;
+var gameContinue = false;
 
 function setGame() {
     gameWon = false;
+    gameContinue = false;
     board = [[-1, -1, -1, 0, -1, -1, -1],
     [-1, -1, 0, 0, 0, -1, -1],
     [-1, 0, 0, 0, 0, 0, -1],
     [0, 0, 0, 0, 0, 0, 0]];
     //testing
-    /*board =[[-1, -1, -1, 3072, -1, -1, -1],
-            [-1, -1, 384, 1536, 768, -1, -1],
+    board =[[-1, -1, -1, 3072, -1, -1, -1],
+            [-1, -1, 384, 384, 768, -1, -1],
             [-1, 192, 96, 48, 96, 192, -1],
-            [3, 6, 12, 24, 12, 6, 3]];*/
+            [3, 6, 12, 24, 12, 6, 3]];
     gameScore = 0;
     let body = document.getElementsByTagName("body");
     if(darkMode){document.body.classList.add("dark");}
@@ -89,7 +91,7 @@ function chackReverseTriangle(r, c) {
 function gameWinchack(){
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
-            if (board[r][c] == 3072) {
+            if (board[r][c] == 3072 && !gameContinue) {
                 gameWon = true;
                 openWinPopup();
                 deldteChild("winScore");
@@ -140,7 +142,12 @@ function gameOverChack() {
 
 
 function openPopup() {
-    document.getElementById("gameOverPopup").className = "background show";
+    if(gameContinue == true){
+        openWinPopup();
+    }
+    else{
+        document.getElementById("gameOverPopup").className = "background show";
+    }
 }
 function closePopup() {
     document.getElementById("gameOverPopup").className = "background";
@@ -173,6 +180,7 @@ function openWinPopup() {
 }
 function closeWinPopup() {
     document.getElementById("gameWinPopup").className = "background";
+    gameContinue = true;
 }
 
 function sharing() {
@@ -337,15 +345,15 @@ function device_checking() {
 function silde(num) {
     if (num == 82) { setGame(); } // R
     else {
-        if      (num == 81 && gameWon == false) { slideLeftUp(); } // Q
-        else if (num == 87 && gameWon == false) { slideUp(); } // W
-        else if (num == 69 && gameWon == false) { slideRightUp(); } // E
-        else if (num == 65 && gameWon == false) { slideLeftDown(); } // A
-        else if (num == 83 && gameWon == false) { slideDown(); } // S
-        else if (num == 68 && gameWon == false) { slideRightDown(); } // D
+        if      (num == 81 && (gameWon == false || gameContinue == true)) { slideLeftUp(); } // Q
+        else if (num == 87 && (gameWon == false || gameContinue == true)) { slideUp(); } // W
+        else if (num == 69 && (gameWon == false || gameContinue == true)) { slideRightUp(); } // E
+        else if (num == 65 && (gameWon == false || gameContinue == true)) { slideLeftDown(); } // A
+        else if (num == 83 && (gameWon == false || gameContinue == true)) { slideDown(); } // S
+        else if (num == 68 && (gameWon == false || gameContinue == true)) { slideRightDown(); } // D
         if(!gameWinchack()){
             gameOverChack();}
-        if (hasEmptyTile() && gameWon == false) { addScore(1); }
+        if (hasEmptyTile() && (gameWon == false|| gameContinue == true)) { addScore(1); }
         setNewTile();
     }
 }
@@ -465,7 +473,7 @@ function deldteTile(num) {
 }
 
 function setNewTile() {
-    if (!hasEmptyTile() || gameWon == true) { return false; }
+    if (!hasEmptyTile() || (gameWon == true ^ gameContinue == true)) { return false; }
     let found = false;
     let newTileNum = 0;
     if(hardMode == true){
