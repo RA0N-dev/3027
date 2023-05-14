@@ -6,7 +6,7 @@ toggleList.forEach((toggle) => {
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('active');
   });
-});
+}); 
 
 var rows = 4;
 var columns = 7;
