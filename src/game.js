@@ -168,7 +168,7 @@ function closePopupSetting() {
 }
 
 function openRepositories(){
-    window.open("https://github.com/heojinhyuk/3027", "_blank");
+    window.open("https://github.com/RA0N-dev/3027", "_blank");
 }
 
 function openTwitter(){
