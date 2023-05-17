@@ -139,6 +139,19 @@ h3 {
     color: #000000;
 }
 
+#orderTable button{
+    margin-right: 10px;
+    margin: auto;
+    background-color: rgba(0,0,0,0);
+    color: #8F7A65
+}
+.dark #orderTable button{
+    margin-right: 10px;
+    margin: auto;
+    background-color: rgba(0,0,0,0);
+    color: #ffffff
+}
+
 .tileLess {
     width: 70px;
     height: 70px;
