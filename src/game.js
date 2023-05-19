@@ -20,6 +20,8 @@ var darkMode = false;
 var gameWon = false;
 var gameContinue = false;
 
+
+
 function setGame() {
     gameWon = false;
     gameContinue = false;
@@ -351,6 +353,10 @@ function silde(num) {
         else if (num == 65 && (gameWon == false || gameContinue == true)) { slideLeftDown(); } // A
         else if (num == 83 && (gameWon == false || gameContinue == true)) { slideDown(); } // S
         else if (num == 68 && (gameWon == false || gameContinue == true)) { slideRightDown(); } // D
+
+        slideSound.pause();
+        slideSound.play();
+
         if(!gameWinchack()){
             gameOverChack();}
         if (hasEmptyTile() && (gameWon == false|| gameContinue == true)) { addScore(1); }
@@ -408,7 +414,9 @@ function sildeTile(sendR, sendC, targetR, targetC, reverse = false) {
 
         if (chackZeroMinus(board[sendR][sendC], board[targetR][targetC]) &&
             (chackReverseTriangle(sendR, sendC) == reverse) && targetR >= 0 && targetC >= 0) {
-            if (board[targetR][targetC] == board[sendR][sendC]) { addScore(board[targetR][targetC] * 2); }
+            if (board[targetR][targetC] == board[sendR][sendC]) {
+                addScore(board[targetR][targetC] * 2);
+            }
             board[targetR][targetC] = board[targetR][targetC] + board[sendR][sendC];
             board[sendR][sendC] = 0;
             if (chackReverseTriangle(sendR, sendC)) {
@@ -442,6 +450,9 @@ function sildeTile(sendR, sendC, targetR, targetC, reverse = false) {
             document.getElementById(targetTile.id).append(numData);
         }
 
+        slideSound.pause();
+        slideSound.currentTime = 0;
+        slideSound.play();
     }
 }
 
