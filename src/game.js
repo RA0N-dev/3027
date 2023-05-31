@@ -29,11 +29,6 @@ function setGame() {
     [-1, -1, 0, 0, 0, -1, -1],
     [-1, 0, 0, 0, 0, 0, -1],
     [0, 0, 0, 0, 0, 0, 0]];
-    //testing
-    /*board =[[-1, -1, -1, 3072, -1, -1, -1],
-            [-1, -1, 384, 384, 768, -1, -1],
-            [-1, 192, 96, 48, 96, 192, -1],
-            [3, 6, 12, 24, 12, 6, 3]];*/
     gameScore = 0;
     let body = document.getElementsByTagName("body");
     if(darkMode){document.body.classList.add("dark");}
