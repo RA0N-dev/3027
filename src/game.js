@@ -352,6 +352,9 @@ function silde(num) {
         slideSound.pause();
         slideSound.play();
 
+        deldteChild("winScore");
+        document.getElementById("winScore").append(gameScore);
+
         if(!gameWinchack()){
             gameOverChack();}
         if (hasEmptyTile() && (gameWon == false|| gameContinue == true)) { addScore(1); }
