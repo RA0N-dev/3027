@@ -30,6 +30,9 @@ const SLIDE_DIRECTIONS = {
 };
 const RESET_KEY = 82; // R
 
+// 화면의 버튼은 onclick 으로 위 번호를 그대로 넘기고, 키보드는 물리 키 이름으로 들어온다.
+const CODE_TO_KEY = { KeyQ: 81, KeyW: 87, KeyE: 69, KeyA: 65, KeyS: 83, KeyD: 68, KeyR: RESET_KEY };
+
 // 점수 구간이 오르면 가장 낮은 타일을 판에서 지우고 그다음 타일이 나오기 시작한다.
 // [기준 점수, 새로 나올 타일, 판에서 지울 타일]
 const TILE_STEPS_NORMAL = [[10000, 24, 12], [1000, 12, 6], [100, 6, 3]];
@@ -46,6 +49,7 @@ var darkMode = false;
 var gameWon = false;
 var gameContinue = false;
 var scoreGain = 0; // 이번 입력으로 오른 점수. 떠오르는 "+n" 표시에 쓴다.
+var scorePlusElement = null; // 지금 떠오르고 있는 "+n" 요소
 
 
 /* ===== 애니메이션 =====
@@ -68,12 +72,21 @@ const KEY_BUTTONS = { 81: "qKey", 87: "wKey", 69: "eKey", 65: "aKey", 83: "sKey"
 const reduceMotion = window.matchMedia
     && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const animTimers = new WeakMap();
+
 function playAnim(element, name) {
     if (!element || reduceMotion) { return; }
+
+    let timers = animTimers.get(element);
+    if (!timers) { timers = {}; animTimers.set(element, timers); }
+    // 앞선 재생에 걸어둔 타이머를 취소한다. 그대로 두면 재생 중인 이번 애니메이션을
+    // 도중에 끊어버려서, 빠르게 연속으로 움직일 때 타일이 미끄러지다 툭 멈춘다.
+    clearTimeout(timers[name]);
+
     element.classList.remove(name);
     void element.offsetWidth; // 같은 프레임에 다시 붙여도 처음부터 재생되도록 리플로우를 강제한다
     element.classList.add(name);
-    setTimeout(() => { element.classList.remove(name); }, ANIM_MS[name]);
+    timers[name] = setTimeout(() => { element.classList.remove(name); }, ANIM_MS[name]);
 }
 
 // 옮겨간 칸에서 원래 칸까지의 거리를 CSS 변수로 넘겨, 출발 지점에서 미끄러져 오게 한다.
@@ -87,12 +100,20 @@ function playMoveAnim(element, name, dx, dy) {
 function playScoreGain() {
     if (scoreGain <= 0) { return; }
     playAnim(document.getElementById("score"), "bump");
+
     if (!reduceMotion) {
+        // 빠르게 연속으로 움직이면 같은 자리에 겹쳐 쌓이므로 앞의 것을 먼저 치운다.
+        if (scorePlusElement) { scorePlusElement.remove(); }
+
         let plus = document.createElement("div");
         plus.className = "scorePlus";
         plus.innerText = "+" + scoreGain;
         document.getElementById("scoreBox").append(plus);
-        setTimeout(() => { plus.remove(); }, 900);
+        scorePlusElement = plus;
+        setTimeout(() => {
+            plus.remove();
+            if (scorePlusElement === plus) { scorePlusElement = null; }
+        }, 900);
     }
     scoreGain = 0;
 }
@@ -121,8 +142,7 @@ function setGame() {
     board = BOARD_SHAPE.map((row) => row.slice());
     gameScore = 0;
     scoreGain = 0;
-    if (darkMode) { document.body.classList.add("dark"); }
-    else { document.body.classList.remove("dark"); }
+    applyDarkMode();
     buildBoard();
     updateScore();
     closePopup();
@@ -300,7 +320,7 @@ function silde(num) {
 
         if (gameWinchack()) { playScoreGain(); return; }
 
-        if (hasEmptyTile()) { addScore(1); }
+        addScore(1); // 옮겨진 타일이 있으면 출발 칸이 비므로 판이 꽉 찬 경우는 없다
         setNewTile();
         playScoreGain();
     }
@@ -436,14 +456,22 @@ function closeWinPopup() {
     gameContinue = true;
 }
 
+function applyDarkMode() {
+    if (darkMode) { document.body.classList.add("dark"); }
+    else { document.body.classList.remove("dark"); }
+}
+
+// 하드 모드는 나오는 타일 규칙이 바뀌므로 판을 새로 시작해야 한다.
 function checkHardMode() {
     hardMode = !hardMode;
     setGame();
 }
 
+// 다크 모드는 색만 바뀐다. 어두운 색은 모두 .dark 아래에 정의돼 있어서
+// body 의 클래스만 바꾸면 되고, 진행 중이던 판을 버릴 이유가 없다.
 function checkDarkMode() {
     darkMode = !darkMode;
-    setGame();
+    applyDarkMode();
 }
 
 function openRepositories() {
@@ -503,13 +531,19 @@ function playSlideSound() {
     let sound = document.getElementById("slideSound");
     sound.pause();
     sound.currentTime = 0;
-    sound.play();
+    // 소리가 아직 재생 중일 때 다음 입력이 오면 위의 pause()가 앞선 play()를 끊는다.
+    // 그때 돌아오는 거절은 무시해도 되는 것이라 여기서 받아둔다.
+    let played = sound.play();
+    if (played) { played.catch(() => { }); }
 }
 
 function device_checking() {
     document.addEventListener("keyup", (e) => {
-        if (e.keyCode == RESET_KEY || SLIDE_DIRECTIONS[e.keyCode]) {
-            silde(e.keyCode);
+        // e.code 는 눌린 물리 키를 가리켜서 한글 입력 상태나 다른 자판 배열에서도
+        // 어긋나지 않는다. e.keyCode 는 폐기된 속성이라 지원하지 않는 경우에만 쓴다.
+        let key = e.code ? CODE_TO_KEY[e.code] : e.keyCode;
+        if (key == RESET_KEY || SLIDE_DIRECTIONS[key]) {
+            silde(key);
         }
     });
 }
