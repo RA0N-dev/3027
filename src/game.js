@@ -499,8 +499,8 @@ function openRepositories() {
     window.open("https://github.com/RA0N-dev/3027", "_blank");
 }
 
-function openTwitter() {
-    window.open("https://twitter.com/3072app", "_blank");
+function openBluesky() {
+    window.open("https://bsky.app/profile/husua.com", "_blank");
 }
 
 
@@ -533,16 +533,23 @@ function shareText(resultLine) {
     return text;
 }
 
-function openTweet(text) {
-    window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text), "_blank");
+// 공유할 곳. 둘 다 글 내용을 text 로 받는 작성 화면을 열어준다.
+const SHARE_TARGETS = {
+    twitter: "https://twitter.com/intent/tweet?text=",
+    bluesky: "https://bsky.app/intent/compose?text=",
+};
+
+function openShare(target, text) {
+    let url = SHARE_TARGETS[target] || SHARE_TARGETS.twitter;
+    window.open(url + encodeURIComponent(text), "_blank");
 }
 
-function sharing() {
-    openTweet(shareText("max tiles : " + maxTile()));
+function sharing(target) {
+    openShare(target, shareText("max tiles : " + maxTile()));
 }
 
-function sharingWin() {
-    openTweet(shareText("Made 3072 and won"));
+function sharingWin(target) {
+    openShare(target, shareText("Made 3072 and won"));
 }
 
 
