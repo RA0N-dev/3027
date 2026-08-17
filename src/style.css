@@ -858,10 +858,12 @@ h3 {
     margin: 0;
 }
 
-/* 설정 팝업의 아이콘 줄. 팝업 안쪽 너비(240px)에 맞춘다. */
+/* 설정 팝업의 링크 줄(저장소, 프로필). 팝업 안쪽 너비(240px)에 맞춘다. */
 .linkRow{
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
     width: 240px;
     margin-bottom: 16px;
 }
@@ -871,24 +873,6 @@ h3 {
     height: 50px;
     border-radius: 50%;
     margin: 0;
-}
-
-.linkRow .slideButton + .slideButton{
-    margin-left: 6px;
-}
-
-/* "링크"(저장소, 프로필)와 "공유"를 갈라 준다. 양쪽에 나비 아이콘이 하나씩
-   있어서, 이 선이 없으면 어느 쪽이 프로필인지 알기 어렵다.
-   좌우 auto 여백이 남는 공간을 나눠 가지며 두 무리를 벌려 놓는다. */
-.settingDivider{
-    width: 2px;
-    height: 30px;
-    border-radius: 1px;
-    background-color: #ccc1b2;
-    margin: 0 auto;
-}
-.dark .settingDivider{
-    background-color: #545454;
 }
 
 /* ==========================================================================
