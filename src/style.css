@@ -960,6 +960,21 @@ h3 {
 .slideButton:active,
 .slideButton.pressed { transform: scale(.92); box-shadow: none; }
 
+/* 그 방향으로 옮겨지는 타일이 없을 때. game.js 의 updateKeyButtons() 가 붙인다. */
+.slideButton.blocked {
+    background-color: #ccc1b2;
+    color: #faf8ef;
+}
+.dark .slideButton.blocked {
+    background-color: #3f3f3f;
+    color: #8f8f8f;
+}
+
+@media (hover: hover) {
+    .slideButton.blocked:hover { transform: none; box-shadow: none; }
+    .slideButton.blocked:active { transform: scale(.92); }
+}
+
 @keyframes spin {
     from { transform: rotate(0); }
     to { transform: rotate(-360deg); }

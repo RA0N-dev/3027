@@ -150,6 +150,7 @@ function setGame() {
     for (let i = 0; i < 3; i++) {
         setNewTile();
     }
+    updateKeyButtons();
     playAnim(document.getElementById("board"), "boardIn");
     playAnim(document.getElementById("resetButton"), "spin");
 }
@@ -258,23 +259,40 @@ function hasEmptyTile() {
     return false;
 }
 
-// 아직 움직일 수 있는지만 판정한다(DOM은 건드리지 않는다).
-// 빈칸이 하나라도 있으면 그 칸과 맞닿은 타일이 반드시 존재하므로 움직일 수 있고,
-// 삼각 격자의 모든 인접 변은 역삼각형 하나와 정삼각형 하나를 잇기 때문에
-// 역삼각형 칸의 위/왼쪽/오른쪽만 검사해도 인접 쌍을 빠짐없이 확인한 것이 된다.
-function canMove() {
+// 그 방향으로 옮겨지는 타일이 하나라도 있는지 판정한다(판은 건드리지 않는다).
+// slideBoard() 는 칸을 훑으면서 옮기지만, 칸이 비는 것은 타일이 빠져나갈 때뿐이라
+// 처음에 아무것도 못 움직이면 도중에 상황이 바뀌는 일도 없다. 그래서 이 검사만으로
+// slideBoard() 가 움직일지 아닐지를 정확히 알 수 있다.
+function canSlide(direction) {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
-            if (board[r][c] < 0) { continue; }
-            if (board[r][c] == 0) { return true; }
-            if (chackReverseTriangle(r, c)) {
-                if (board[r][c] == board[r - 1][c] || board[r][c] == board[r][c - 1] || board[r][c] == board[r][c + 1]) {
-                    return true;
-                }
-            }
+            let targetR = r + direction.dr;
+            let targetC = c + direction.dc;
+            if (targetR < 0 || targetR >= rows || targetC < 0 || targetC >= columns) { continue; }
+            if (chackReverseTriangle(r, c) != direction.reverse) { continue; }
+            if (chackZeroMinus(board[r][c], board[targetR][targetC])) { return true; }
         }
     }
     return false;
+}
+
+// 여섯 방향 중 하나라도 움직일 수 있으면 게임이 계속된다.
+// 버튼에 표시하는 판정과 같은 함수를 쓰므로 둘이 어긋날 수 없다.
+function canMove() {
+    for (let key of Object.keys(SLIDE_DIRECTIONS)) {
+        if (canSlide(SLIDE_DIRECTIONS[key])) { return true; }
+    }
+    return false;
+}
+
+// 못 움직이는 방향의 버튼을 흐리게 표시한다.
+function updateKeyButtons() {
+    for (let key of Object.keys(SLIDE_DIRECTIONS)) {
+        let button = document.getElementById(KEY_BUTTONS[key]);
+        if (!button) { continue; }
+        if (canSlide(SLIDE_DIRECTIONS[key])) { button.classList.remove("blocked"); }
+        else { button.classList.add("blocked"); }
+    }
 }
 
 function gameWinchack() {
@@ -328,6 +346,8 @@ function silde(num) {
         // 그 방향으로는 이미 다 밀려 있다는 것을 판을 흔들어 알려준다.
         playAnim(document.getElementById("board"), "boardShake");
     }
+
+    updateKeyButtons();
 
     // 게임오버 판정은 새 타일이 놓인 뒤에, 그리고 이동이 실패한 입력에서도 해야 한다.
     // 성공한 이동은 항상 빈칸을 남기므로 이동 직후에만 검사하면 판정이 영영 성립하지 않고,
@@ -454,6 +474,7 @@ function openWinPopup() { showPopup("gameWinPopup"); }
 function closeWinPopup() {
     hidePopup("gameWinPopup");
     gameContinue = true;
+    updateKeyButtons(); // 이어하기를 고른 지금이 다시 조작을 넘겨받는 시점이다
 }
 
 function applyDarkMode() {
