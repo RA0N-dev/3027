@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     charset="utf-8" content="Move the square tiles to make 3072!">
   <link href="src/style.css" type="text/css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/bf4d115447.js" crossorigin="anonymous"></script>
 
   <link rel="apple-touch-icon" sizes="57x57" href="src/icon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="src/icon//apple-icon-60x60.png">
@@ -29,18 +28,30 @@
 </head>
 
 <body class="">
+  <!-- 아이콘 스프라이트. Font Awesome Free 6.7.2 (CC BY 4.0, https://fontawesome.com/license/free)
+       의 SVG 를 그대로 넣었다. 아이콘 8종 때문에 302 KB 를 외부에서 받아오던 것을 대신한다. -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+    <symbol id="icon-check" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></symbol>
+    <symbol id="icon-gear" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+    <symbol id="icon-question" viewBox="0 0 320 512"><path d="M80 160c0-35.3 28.7-64 64-64l32 0c35.3 0 64 28.7 64 64l0 3.6c0 21.8-11.1 42.1-29.4 53.8l-42.2 27.1c-25.2 16.2-40.4 44.1-40.4 74l0 1.4c0 17.7 14.3 32 32 32s32-14.3 32-32l0-1.4c0-8.2 4.2-15.8 11-20.2l42.2-27.1c36.6-23.6 58.8-64.1 58.8-107.7l0-3.6c0-70.7-57.3-128-128-128l-32 0C73.3 32 16 89.3 16 160c0 17.7 14.3 32 32 32s32-14.3 32-32zm80 320a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></symbol>
+    <symbol id="icon-rotate" viewBox="0 0 512 512"><path d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0c0 0 0 0 0 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l7.6 0 .7 0L168 288c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-119.6 0-.7 0-7.6z"/></symbol>
+    <symbol id="icon-share" viewBox="0 0 512 512"><path d="M307 34.8c-11.5 5.1-19 16.6-19 29.2l0 64-112 0C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96l96 0 0 64c0 12.6 7.4 24.1 19 29.2s25 3 34.4-5.4l160-144c6.7-6.1 10.6-14.7 10.6-23.8s-3.8-17.7-10.6-23.8l-160-144c-9.4-8.5-22.9-10.6-34.4-5.4z"/></symbol>
+    <symbol id="icon-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol>
+    <symbol id="icon-xmark" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+  </svg>
+
   <audio id="slideSound" type="audio" src="src/sound/slideSound.wav"></audio>
 
   <div id="menuBar">
     <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;"
-      onclick="settingPopup()"><i class="fa-solid fa-gear"></i></i></button>
+      onclick="settingPopup()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-gear"></use></svg></button>
     <h1>3072</h1>
-    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><i
-        class="fa-solid fa-question"></i></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><svg class="icon" viewBox="0 0 320 512" aria-hidden="true"><use href="#icon-question"></use></svg></button>
   </div>
   <div id="orderTable">
     <button id="resetButton" class="slideButton" style="width: 50px; height: 50px;"
-      onclick="setGame()"><i class="fa-solid fa-rotate"></i></button>
+      onclick="setGame()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-rotate"></use></svg></button>
   </div>
   <div id="scoreBox">
     <h2>SCORE</h2>
@@ -60,16 +71,15 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closePopup()"><i
-              class="fa-solid fa-xmark"></i></button><br>
+          <button class="slideButton closeButton" onclick="closePopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div><br>
         <h2 class="popupTitle" style="font-size: 36px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div></h2>
           <h2>Max tiles : <div id="maxTiles" style="display: inline;"></div>
           </h2>
           <div class="popupButtonTable">
-            <button class="slideButton" onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>
-            <button class="slideButton" onclick="sharing()"> <i class="fa-solid fa-share"></i> </button>
+            <button class="slideButton" onclick="setGame()"> <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-rotate"></use></svg> </button>
+            <button class="slideButton" onclick="sharing()"> <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-share"></use></svg> </button>
           </div>
       </div>
     </div>
@@ -79,8 +89,7 @@
     <div class="window">
       <div class="popupQuestion">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closePopupQuestion()"><i
-              class="fa-solid fa-xmark"></i></button><br>
+          <button class="slideButton closeButton" onclick="closePopupQuestion()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div>
         <div class="questionSet">
 
@@ -233,15 +242,15 @@
         <div style="display: flex; flex-wrap: wrap; width: 280px; margin-bottom: 16px;">
           <button class="slideButton"
             style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: 15px; margin-right: auto; "
-            onclick="openRepositories()"><i class="fa-brands fa-github"></i></button>
+            onclick="openRepositories()"><svg class="icon" viewBox="0 0 496 512" aria-hidden="true"><use href="#icon-github"></use></svg></button>
           <button class="slideButton"
             style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: auto; "
-            onclick="openTwitter()"><i class="fa-brands fa-twitter"></i></button>
+            onclick="openTwitter()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-twitter"></use></svg></button>
           <button class="slideButton"
             style="width: 50px; height:50px; border-radius:50%; margin: 0; margin-left: auto; margin-right: 15px; "
-            onclick="sharing()"><i class="fa-solid fa-share"></i></button>
+            onclick="sharing()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-share"></use></svg></button>
         </div>
-        <button class="slideButton" onclick="closePopupSetting()"><i class="fa-solid fa-check"></i></button><br>
+        <button class="slideButton" onclick="closePopupSetting()"><svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#icon-check"></use></svg></button><br>
       </div>
     </div>
   </div>
@@ -250,14 +259,13 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closeWinPopup()"><i
-              class="fa-solid fa-xmark"></i></button><br>
+          <button class="slideButton closeButton" onclick="closeWinPopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div><br>
         <h2 class="popupTitle" style="font-size: 36px;">Game Win!</h2>
         <h2 style="margin-bottom: 64px;">Score : <div id="winScore" style="display: inline;"></div></h2>
         <div class="popupButtonTable">
-          <button class="slideButton" onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>
-          <button class="slideButton" onclick="sharingWin()"> <i class="fa-solid fa-share"></i> </button>
+          <button class="slideButton" onclick="setGame()"> <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-rotate"></use></svg> </button>
+          <button class="slideButton" onclick="sharingWin()"> <svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-share"></use></svg> </button>
         </div>
       </div>
     </div>

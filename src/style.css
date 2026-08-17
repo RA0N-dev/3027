@@ -145,6 +145,14 @@ h3 {
     color: #000000;
 }
 
+/* 아이콘. 글꼴 아이콘처럼 버튼의 font-size 로 크기가, color 로 색이 정해진다. */
+.icon {
+    height: 1em;
+    width: auto;
+    fill: currentColor;
+    vertical-align: -0.125em;
+}
+
 #orderTable button{
     margin-right: 10px;
     margin: auto;
