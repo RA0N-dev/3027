@@ -39,11 +39,13 @@
         class="fa-solid fa-question"></i></button>
   </div>
   <div id="orderTable">
-    <button class="slideButton" style="width: 50px; height: 50px;"
+    <button id="resetButton" class="slideButton" style="width: 50px; height: 50px;"
       onclick="setGame()"><i class="fa-solid fa-rotate"></i></button>
   </div>
-  <h2>SCORE</h2>
-  <h3 id="score"></h3><br>
+  <div id="scoreBox">
+    <h2>SCORE</h2>
+    <h3 id="score"></h3>
+  </div><br>
   <div id=board></div>
   <div id=buttonTable>
     <button id="qKey" class="slideButton" style="margin-left: 0;" onclick="silde(81)"> Q </button>
@@ -61,7 +63,7 @@
           <button id="closeButton" class="slideButton" onclick="closePopup()"><i
               class="fa-solid fa-xmark"></i></button><br>
         </div><br>
-        <h2 style="font-size: 36px;">GameOver!</h2>
+        <h2 class="popupTitle" style="font-size: 36px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div></h2>
           <h2>Max tiles : <div id="maxTiles" style="display: inline;"></div>
           </h2>
@@ -251,7 +253,7 @@
           <button id="closeButton" class="slideButton" onclick="closeWinPopup()"><i
               class="fa-solid fa-xmark"></i></button><br>
         </div><br>
-        <h2 style="font-size: 36px;">Game Win!</h2>
+        <h2 class="popupTitle" style="font-size: 36px;">Game Win!</h2>
         <h2 style="margin-bottom: 64px;">Score : <div id="winScore" style="display: inline;"></div></h2>
         <div class="popupButtonTable">
           <button class="slideButton" onclick="setGame()"> <i class="fa-solid fa-rotate"></i> </button>

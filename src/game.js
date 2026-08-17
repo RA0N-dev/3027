@@ -45,6 +45,74 @@ var hardMode = false;
 var darkMode = false;
 var gameWon = false;
 var gameContinue = false;
+var scoreGain = 0; // 이번 입력으로 오른 점수. 떠오르는 "+n" 표시에 쓴다.
+
+
+/* ===== 애니메이션 =====
+   CSS 키프레임에 클래스를 붙였다 떼는 것이 전부라 별도 라이브러리가 필요 없다.
+   각 값은 src/style.css 의 animation 재생 시간과 맞춰야 한다. */
+
+const ANIM_MS = {
+    tileSlide: 140,
+    tileSlideMerge: 340,
+    tileSpawn: 280,
+    boardShake: 320,
+    boardIn: 420,
+    bump: 340,
+    pressed: 140,
+    spin: 500,
+};
+const COUNT_UP_MS = 600;
+const KEY_BUTTONS = { 81: "qKey", 87: "wKey", 69: "eKey", 65: "aKey", 83: "sKey", 68: "dKey" };
+
+const reduceMotion = window.matchMedia
+    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function playAnim(element, name) {
+    if (!element || reduceMotion) { return; }
+    element.classList.remove(name);
+    void element.offsetWidth; // 같은 프레임에 다시 붙여도 처음부터 재생되도록 리플로우를 강제한다
+    element.classList.add(name);
+    setTimeout(() => { element.classList.remove(name); }, ANIM_MS[name]);
+}
+
+// 옮겨간 칸에서 원래 칸까지의 거리를 CSS 변수로 넘겨, 출발 지점에서 미끄러져 오게 한다.
+function playMoveAnim(element, name, dx, dy) {
+    if (reduceMotion) { return; }
+    element.style.setProperty("--dx", dx + "px");
+    element.style.setProperty("--dy", dy + "px");
+    playAnim(element, name);
+}
+
+function playScoreGain() {
+    if (scoreGain <= 0) { return; }
+    playAnim(document.getElementById("score"), "bump");
+    if (!reduceMotion) {
+        let plus = document.createElement("div");
+        plus.className = "scorePlus";
+        plus.innerText = "+" + scoreGain;
+        document.getElementById("scoreBox").append(plus);
+        setTimeout(() => { plus.remove(); }, 900);
+    }
+    scoreGain = 0;
+}
+
+function countUp(id, value) {
+    if (reduceMotion || value <= 0) { setText(id, value); return; }
+
+    setText(id, 0); // 돌고 있던 카운트업이 있으면 취소하고 0에서 다시 시작한다
+    let element = document.getElementById(id);
+    let token = countTokens[id];
+    let start = performance.now();
+
+    let step = function (now) {
+        if (countTokens[id] !== token) { return; }
+        let progress = Math.min((now - start) / COUNT_UP_MS, 1);
+        element.innerText = Math.round(value * (1 - Math.pow(1 - progress, 3)));
+        if (progress < 1) { requestAnimationFrame(step); }
+    };
+    requestAnimationFrame(step);
+}
 
 
 function setGame() {
@@ -52,6 +120,7 @@ function setGame() {
     gameContinue = false;
     board = BOARD_SHAPE.map((row) => row.slice());
     gameScore = 0;
+    scoreGain = 0;
     if (darkMode) { document.body.classList.add("dark"); }
     else { document.body.classList.remove("dark"); }
     buildBoard();
@@ -61,6 +130,8 @@ function setGame() {
     for (let i = 0; i < 3; i++) {
         setNewTile();
     }
+    playAnim(document.getElementById("board"), "boardIn");
+    playAnim(document.getElementById("resetButton"), "spin");
 }
 
 function chackReverseTriangle(r, c) {
@@ -78,7 +149,11 @@ function deldteChild(Id) {
     }
 }
 
+// 돌고 있는 countUp() 이 나중에 값을 덮어쓰지 않도록, 값을 바꿀 때마다 표를 올린다.
+const countTokens = {};
+
 function setText(id, value) {
+    countTokens[id] = (countTokens[id] || 0) + 1;
     deldteChild(id);
     document.getElementById(id).append(value);
 }
@@ -188,7 +263,8 @@ function gameWinchack() {
         for (let c = 0; c < columns; c++) {
             if (board[r][c] == WIN_TILE) {
                 gameWon = true;
-                setText("winScore", gameScore);
+                // 팝업을 여는 시점의 점수를 그때 넣는다. 승리 팝업은 여기서만 열린다.
+                countUp("winScore", gameScore);
                 openWinPopup();
                 return true;
             }
@@ -198,7 +274,7 @@ function gameWinchack() {
 }
 
 function showGameOver() {
-    setText("endScore", gameScore);
+    countUp("endScore", gameScore);
     setText("maxTiles", maxTile());
     openPopup();
 }
@@ -216,16 +292,21 @@ function silde(num) {
 
     let direction = SLIDE_DIRECTIONS[num];
     if (!direction) { return; }
+    playAnim(document.getElementById(KEY_BUTTONS[num]), "pressed");
 
     // 실제로 옮겨진 타일이 있을 때만 새 타일 생성/점수 추가/사운드 재생이 따라온다.
     if (slideBoard(direction)) {
         playSlideSound();
-        setText("winScore", gameScore);
 
-        if (gameWinchack()) { return; }
+        if (gameWinchack()) { playScoreGain(); return; }
 
         if (hasEmptyTile()) { addScore(1); }
         setNewTile();
+        playScoreGain();
+    }
+    else {
+        // 그 방향으로는 이미 다 밀려 있다는 것을 판을 흔들어 알려준다.
+        playAnim(document.getElementById("board"), "boardShake");
     }
 
     // 게임오버 판정은 새 타일이 놓인 뒤에, 그리고 이동이 실패한 입력에서도 해야 한다.
@@ -251,12 +332,21 @@ function sildeTile(sendR, sendC, targetR, targetC, reverse = false) {
     if (chackReverseTriangle(sendR, sendC) != reverse) { return false; }
     if (!chackZeroMinus(board[sendR][sendC], board[targetR][targetC])) { return false; }
 
-    if (board[targetR][targetC] == board[sendR][sendC]) { addScore(board[targetR][targetC] * 2); }
+    let merged = board[targetR][targetC] == board[sendR][sendC];
+    // 두 칸의 실제 좌표 차이를 옮기기 전에 재둔다. 삼각형 칸은 서로 겹쳐 놓여 있어서
+    // 가로/세로 간격을 값으로 고정해두면 어긋난다.
+    let sendTile = document.getElementById(sendR + "-" + sendC);
+    let targetTile = document.getElementById(targetR + "-" + targetC);
+    let dx = sendTile.offsetLeft - targetTile.offsetLeft;
+    let dy = sendTile.offsetTop - targetTile.offsetTop;
+
+    if (merged) { addScore(board[targetR][targetC] * 2); }
     board[targetR][targetC] = board[targetR][targetC] + board[sendR][sendC];
     board[sendR][sendC] = 0;
 
     renderTile(sendR, sendC);
     renderTile(targetR, targetC);
+    playMoveAnim(targetTile, merged ? "tileSlideMerge" : "tileSlide", dx, dy);
     return true;
 }
 
@@ -315,7 +405,7 @@ function setNewTile() {
     let [r, c] = empties[Math.floor(Math.random() * empties.length)];
 
     board[r][c] = newTileNum;
-    renderTile(r, c);
+    playAnim(renderTile(r, c), "tileSpawn");
     return true;
 }
 
