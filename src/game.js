@@ -1,12 +1,8 @@
-window.onload = function () { setGame(); }
-
-const toggleList = document.querySelectorAll('.toggleSwitch');
-
-toggleList.forEach((toggle) => {
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-  });
-});
+// 저장된 판이 있으면 그대로 이어하고, 없으면 새 판을 깐다.
+window.onload = function () {
+    if (loadGame()) { resumeGame(); }
+    else { setGame(); }
+}
 
 // 판 모양. -1은 판 바깥이라 타일이 놓이지 않는 칸이다.
 const BOARD_SHAPE = [[-1, -1, -1, 0, -1, -1, -1],
@@ -28,10 +24,11 @@ const SLIDE_DIRECTIONS = {
     83: { dr: 1, dc: 0, reverse: false },  // S
     68: { dr: 0, dc: 1, reverse: true },   // D
 };
-const RESET_KEY = 82; // R
+const UNDO_KEY = 90; // Z
+const UNDO_LIMIT = 50;
 
 // 화면의 버튼은 onclick 으로 위 번호를 그대로 넘기고, 키보드는 물리 키 이름으로 들어온다.
-const CODE_TO_KEY = { KeyQ: 81, KeyW: 87, KeyE: 69, KeyA: 65, KeyS: 83, KeyD: 68, KeyR: RESET_KEY };
+const CODE_TO_KEY = { KeyQ: 81, KeyW: 87, KeyE: 69, KeyA: 65, KeyS: 83, KeyD: 68, KeyZ: UNDO_KEY };
 
 // 점수 구간이 오르면 가장 낮은 타일을 판에서 지우고 그다음 타일이 나오기 시작한다.
 // [기준 점수, 새로 나올 타일, 판에서 지울 타일]
@@ -44,12 +41,15 @@ var rows = 4;
 var columns = 7;
 var board = BOARD_SHAPE.map((row) => row.slice());
 var gameScore = 0;
+var bestScore = 0;
 var hardMode = false;
 var darkMode = false;
+var soundOn = true;
 var gameWon = false;
 var gameContinue = false;
 var scoreGain = 0; // 이번 입력으로 오른 점수. 떠오르는 "+n" 표시에 쓴다.
 var scorePlusElement = null; // 지금 떠오르고 있는 "+n" 요소
+var moveHistory = []; // 실행취소용 이전 상태 스택
 
 
 /* ===== 애니메이션 =====
@@ -108,7 +108,7 @@ function playScoreGain() {
         let plus = document.createElement("div");
         plus.className = "scorePlus";
         plus.innerText = "+" + scoreGain;
-        document.getElementById("scoreBox").append(plus);
+        document.getElementById("scoreCell").append(plus);
         scorePlusElement = plus;
         setTimeout(() => {
             plus.remove();
@@ -136,23 +136,82 @@ function countUp(id, value) {
 }
 
 
+/* ===== 저장 =====
+   새로고침하거나 탭을 잘못 닫아도 하던 판이 그대로 남아 있게 한다.
+   localStorage 는 사생활 보호 모드처럼 막히는 환경이 있어서, 실패해도 게임은 그냥 굴러가게 둔다. */
+
+const SAVE_KEY = "3072";
+
+function saveGame() {
+    try {
+        localStorage.setItem(SAVE_KEY, JSON.stringify({
+            board, gameScore, bestScore, gameWon, gameContinue, hardMode, darkMode, soundOn,
+        }));
+    } catch (e) { /* 저장이 막혀도 진행에는 지장이 없다 */ }
+}
+
+// 이어할 판을 되살렸으면 true. 설정과 최고 점수는 판을 못 이어받아도 그대로 가져온다.
+function loadGame() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(SAVE_KEY)); } catch (e) { }
+    if (!saved) { return false; }
+
+    bestScore = saved.bestScore || 0;
+    hardMode = !!saved.hardMode;
+    darkMode = !!saved.darkMode;
+    soundOn = saved.soundOn !== false; // 소리 설정이 없던 시절의 저장본은 켠 것으로 본다
+
+    // 남의 손을 탔거나 판 모양이 바뀐 뒤의 저장본을 그대로 믿으면 렌더링이 깨진다.
+    if (!Array.isArray(saved.board) || saved.board.length != rows) { return false; }
+    if (saved.board.some((row) => !Array.isArray(row) || row.length != columns)) { return false; }
+
+    board = saved.board;
+    gameScore = saved.gameScore || 0;
+    gameWon = !!saved.gameWon;
+    gameContinue = !!saved.gameContinue;
+    return true;
+}
+
+
 function setGame() {
     gameWon = false;
     gameContinue = false;
     board = BOARD_SHAPE.map((row) => row.slice());
     gameScore = 0;
     scoreGain = 0;
+    moveHistory = [];
     applyDarkMode();
+    syncToggles();
     buildBoard();
     updateScore();
     closePopup();
+    hideWinPopup(); // 승리 팝업의 다시 시작으로도 들어오므로 여기서 닫아준다
     render();
     for (let i = 0; i < 3; i++) {
         setNewTile();
     }
     updateKeyButtons();
+    updateUndoButton();
     playAnim(document.getElementById("board"), "boardIn");
     playAnim(document.getElementById("resetButton"), "spin");
+    saveGame();
+}
+
+// 저장된 판을 화면에 올린다. 새 타일을 놓지 않는 것 말고는 setGame() 과 같다.
+function resumeGame() {
+    moveHistory = [];
+    applyDarkMode();
+    syncToggles();
+    buildBoard();
+    updateScore();
+    render();
+    updateKeyButtons();
+    updateUndoButton();
+    playAnim(document.getElementById("board"), "boardIn");
+
+    // 판이 끝난 상태로 저장됐다면 그 팝업까지 되살려야 한다.
+    if (gameWon && !gameContinue) { countUp("winScore", gameScore); openWinPopup(); }
+    else if (!canMove()) { showGameOver(); }
 }
 
 function chackReverseTriangle(r, c) {
@@ -228,8 +287,11 @@ function render() {
 
 /* ===== 점수 ===== */
 
+// 점수가 바뀌는 길은 전부 여기로 모이므로, 최고 점수도 여기서만 갱신하면 된다.
 function updateScore() {
     setText("score", gameScore);
+    if (gameScore > bestScore) { bestScore = gameScore; }
+    setText("best", bestScore);
 }
 
 function addScore(point) {
@@ -295,6 +357,14 @@ function updateKeyButtons() {
     }
 }
 
+// 되돌릴 수가 없으면 버튼을 흐리게 표시한다.
+function updateUndoButton() {
+    let button = document.getElementById("undoButton");
+    if (!button) { return; }
+    if (moveHistory.length > 0) { button.classList.remove("blocked"); }
+    else { button.classList.add("blocked"); }
+}
+
 function gameWinchack() {
     if (gameContinue) { return false; }
     for (let r = 0; r < rows; r++) {
@@ -323,8 +393,6 @@ function showGameOver() {
 // Q W E    slideLeftUp   slideUp   slideRightUp
 // A S D    slideLeftDown slideDown slideRightDown
 function silde(num) {
-    if (num == RESET_KEY) { setGame(); return; }
-
     // 승리 팝업이 떠 있는 동안(아직 이어하기를 고르지 않은 상태)에는 입력을 받지 않는다.
     if (gameWon && !gameContinue) { return; }
 
@@ -332,11 +400,20 @@ function silde(num) {
     if (!direction) { return; }
     playAnim(document.getElementById(KEY_BUTTONS[num]), "pressed");
 
+    // 되돌릴 수 있게, 옮기기 전 상태를 미리 떠둔다. 움직이지 않은 입력은 되돌릴 것도 없으니
+    // 실제로 옮겨졌을 때만 쌓는다.
+    let beforeMove = snapshotState();
+
     // 실제로 옮겨진 타일이 있을 때만 새 타일 생성/점수 추가/사운드 재생이 따라온다.
     if (slideBoard(direction)) {
+        moveHistory.push(beforeMove);
+        // 한 판이 길어지면 되돌리기 기록이 끝없이 쌓인다. 몇 수씩 거슬러 올라갈 일은 없으니
+        // 최근 것만 남긴다.
+        if (moveHistory.length > UNDO_LIMIT) { moveHistory.shift(); }
+        updateUndoButton();
         playSlideSound();
 
-        if (gameWinchack()) { playScoreGain(); return; }
+        if (gameWinchack()) { playScoreGain(); saveGame(); return; }
 
         addScore(1); // 옮겨진 타일이 있으면 출발 칸이 비므로 판이 꽉 찬 경우는 없다
         setNewTile();
@@ -353,6 +430,30 @@ function silde(num) {
     // 성공한 이동은 항상 빈칸을 남기므로 이동 직후에만 검사하면 판정이 영영 성립하지 않고,
     // 반대로 이미 막힌 판에서는 어떤 이동도 성공하지 못하기 때문이다.
     if (!canMove()) { showGameOver(); }
+    saveGame();
+}
+
+function snapshotState() {
+    return { board: board.map((row) => row.slice()), score: gameScore, gameWon, gameContinue };
+}
+
+// 되돌릴 상태가 남아있는 한 언제든(승리/게임오버 팝업이 떠 있어도) 되돌릴 수 있다.
+function undoMove() {
+    if (moveHistory.length == 0) { return; }
+    let previous = moveHistory.pop();
+    board = previous.board;
+    gameScore = previous.score;
+    gameWon = previous.gameWon;
+    gameContinue = previous.gameContinue;
+    scoreGain = 0;
+
+    closePopup();
+    hideWinPopup();
+    updateScore();
+    render();
+    updateKeyButtons();
+    updateUndoButton();
+    saveGame();
 }
 
 function slideBoard(direction) {
@@ -471,10 +572,12 @@ function settingPopup() { showPopup("settingPopup"); }
 function closePopupSetting() { hidePopup("settingPopup"); }
 
 function openWinPopup() { showPopup("gameWinPopup"); }
+function hideWinPopup() { hidePopup("gameWinPopup"); }
 function closeWinPopup() {
-    hidePopup("gameWinPopup");
+    hideWinPopup();
     gameContinue = true;
     updateKeyButtons(); // 이어하기를 고른 지금이 다시 조작을 넘겨받는 시점이다
+    saveGame();
 }
 
 function applyDarkMode() {
@@ -482,10 +585,18 @@ function applyDarkMode() {
     else { document.body.classList.remove("dark"); }
 }
 
+// 스위치 모양은 설정값을 그대로 따라간다. 저장된 설정을 불러왔을 때
+// 스위치만 꺼진 채로 남는 일이 없도록, 값을 바꾼 자리마다 이걸 부른다.
+function syncToggles() {
+    document.getElementById("hardToggle").classList.toggle("active", hardMode);
+    document.getElementById("darkToggle").classList.toggle("active", darkMode);
+    document.getElementById("soundToggle").classList.toggle("active", soundOn);
+}
+
 // 하드 모드는 나오는 타일 규칙이 바뀌므로 판을 새로 시작해야 한다.
 function checkHardMode() {
     hardMode = !hardMode;
-    setGame();
+    setGame(); // setGame() 안에서 syncToggles() 와 saveGame() 이 이어진다
 }
 
 // 다크 모드는 색만 바뀐다. 어두운 색은 모두 .dark 아래에 정의돼 있어서
@@ -493,6 +604,14 @@ function checkHardMode() {
 function checkDarkMode() {
     darkMode = !darkMode;
     applyDarkMode();
+    syncToggles();
+    saveGame();
+}
+
+function checkSound() {
+    soundOn = !soundOn;
+    syncToggles();
+    saveGame();
 }
 
 function openRepositories() {
@@ -556,6 +675,7 @@ function sharingWin(target) {
 /* ===== 입력 / 사운드 ===== */
 
 function playSlideSound() {
+    if (!soundOn) { return; }
     let sound = document.getElementById("slideSound");
     sound.pause();
     sound.currentTime = 0;
@@ -570,7 +690,8 @@ function device_checking() {
         // e.code 는 눌린 물리 키를 가리켜서 한글 입력 상태나 다른 자판 배열에서도
         // 어긋나지 않는다. e.keyCode 는 폐기된 속성이라 지원하지 않는 경우에만 쓴다.
         let key = e.code ? CODE_TO_KEY[e.code] : e.keyCode;
-        if (key == RESET_KEY || SLIDE_DIRECTIONS[key]) {
+        if (key == UNDO_KEY) { undoMove(); return; }
+        if (SLIDE_DIRECTIONS[key]) {
             silde(key);
         }
     });

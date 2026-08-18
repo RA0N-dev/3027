@@ -165,6 +165,12 @@ h3 {
     background-color: rgba(0,0,0,0);
     color: #ffffff
 }
+#orderTable button.blocked {
+    color: #ccc1b2;
+}
+.dark #orderTable button.blocked {
+    color: #5a5a5a;
+}
 
 .tileLess {
     width: 70px;
@@ -489,6 +495,12 @@ h3 {
     align-items: left;
 }
 
+/* 설정만 줄 수가 늘어날 수 있어서 내용에 맞춰 늘어나게 둔다.
+   다른 팝업은 높이가 같아야 열고 닫을 때 크기가 튀지 않으므로 257px 을 그대로 쓴다. */
+#settingPopup .popup {
+    height: auto;
+}
+
 .closeButton {
     width: 50px;
     height: 50px;
@@ -759,13 +771,18 @@ h3 {
     color: #ffffff;
 }
 
+/* 설정 한 줄: 이름은 왼쪽, 스위치는 오른쪽. 이름 길이가 달라도 스위치가 한 줄로 선다. */
 .menuBlock {
-    width: 896px;
+    width: 100%;
     height: 30px;
     font-size: 24px;
     display: flex;
-    margin: 3px 0px 3px 16px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3px 0;
+    cursor: pointer;
 }
+.menuBlock h2 { margin: 0; }
 
 .toggleSwitch {
     width: 48px;
@@ -775,17 +792,10 @@ h3 {
     border-radius: 30px;
     background-color: #ccc1b2;
     cursor: pointer;
-    margin: 1px auto 5px auto;
+    flex: none;
 }
 .dark .toggleSwitch {
-    width: 48px;
-    height: 22px;
-    display: block;
-    position: relative;
-    border-radius: 30px;
     background-color: #dad8d5;
-    cursor: pointer;
-    margin: 1px auto 5px auto;
 }
 
 .toggleSwitch .toggleButton {
@@ -828,20 +838,6 @@ h3 {
 .toggleSwitch,
 .toggleButton {
     transition: all 0.2s ease-in;
-}
-
-.toggleSwitch .darkMode .active {
-    background: #8F7A65;
-}
-.dark .toggleSwitch .darkMode .active {
-    background: #8F7A65;
-}
-
-.toggleSwitch .darkMode .toggleButton {
-    background: #faf8ef;
-}
-.dark .toggleSwitch .darkMode .toggleButton {
-    background: #faf8ef;
 }
 
 /* 다시 시작 + 공유(트위터, 블루스카이) 세 개가 팝업 너비 240px 안에 들어가야 한다. */
@@ -940,10 +936,16 @@ h3 {
 /* --- 점수 --- */
 
 #scoreBox {
-    position: relative;
     width: 280px;
     margin: 0 auto;
+    display: flex;
     animation: fadeUp 500ms 60ms ease both;
+}
+
+/* "+n" 이 SCORE 쪽에만 떠오르도록 기준을 칸으로 잡는다. */
+.scoreCell {
+    flex: 1;
+    position: relative;
 }
 
 #score { display: inline-block; }
@@ -984,7 +986,7 @@ h3 {
 
 @media (hover: hover) {
     .slideButton:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, .18); }
-    #orderTable button:hover { transform: rotate(-90deg); box-shadow: none; }
+    #resetButton:hover { transform: rotate(-90deg); box-shadow: none; }
     .closeButton:hover { transform: rotate(90deg); box-shadow: none; }
 }
 
