@@ -37,7 +37,7 @@
 
 </head>
 
-<body class="">
+<body class="preload">
   <!-- 아이콘 스프라이트. Font Awesome Free 6.7.2 (CC BY 4.0, https://fontawesome.com/license/free)
        의 SVG 를 그대로 넣었다. 아이콘 8종 때문에 302 KB 를 외부에서 받아오던 것을 대신한다. -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
@@ -57,14 +57,14 @@
 
   <div id="menuBar">
     <button class="slideButton" style="width: 50px; height: 50px; margin: 3px auto 3px 10px;"
-      onclick="settingPopup()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-gear"></use></svg></button>
+      title="설정" onclick="settingPopup()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-gear"></use></svg></button>
     <h1>3072</h1>
-    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" onclick="questionGame()"><svg class="icon" viewBox="0 0 320 512" aria-hidden="true"><use href="#icon-question"></use></svg></button>
+    <button class="slideButton" style="width: 50px; height: 50px; margin: 3px 10px 3px auto" title="게임 방법" onclick="questionGame()"><svg class="icon" viewBox="0 0 320 512" aria-hidden="true"><use href="#icon-question"></use></svg></button>
   </div>
   <div id="orderTable">
     <button id="undoButton" class="slideButton blocked" title="되돌리기 (Z)" style="width: 50px; height: 50px;"
       onclick="undoMove()"><svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#icon-arrow-left"></use></svg></button>
-    <button id="resetButton" class="slideButton" style="width: 50px; height: 50px;"
+    <button id="resetButton" class="slideButton" title="다시 시작" style="width: 50px; height: 50px;"
       onclick="setGame()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-rotate"></use></svg></button>
   </div>
   <div id="scoreBox">
@@ -91,7 +91,7 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closePopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
+          <button class="slideButton closeButton" title="닫기" onclick="closePopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div><br>
         <h2 class="popupTitle" style="font-size: 36px;">GameOver!</h2>
         <h2>Score : <div id="endScore" style="display: inline;"></div></h2>
@@ -110,7 +110,7 @@
     <div class="window">
       <div class="popupQuestion">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closePopupQuestion()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
+          <button class="slideButton closeButton" title="닫기" onclick="closePopupQuestion()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div>
         <div class="questionSet">
 
@@ -260,7 +260,7 @@
           <button class="slideButton" title="만든 사람 (Bluesky)"
             onclick="openBluesky()"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true"><use href="#icon-bluesky"></use></svg></button>
         </div>
-        <button class="slideButton" onclick="closePopupSetting()"><svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#icon-check"></use></svg></button><br>
+        <button class="slideButton" title="확인" onclick="closePopupSetting()"><svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><use href="#icon-check"></use></svg></button><br>
       </div>
     </div>
   </div>
@@ -269,7 +269,7 @@
     <div class="window">
       <div class="popup">
         <div style="display: flex;">
-          <button class="slideButton closeButton" onclick="closeWinPopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
+          <button class="slideButton closeButton" title="닫기" onclick="closeWinPopup()"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true"><use href="#icon-xmark"></use></svg></button><br>
         </div><br>
         <h2 class="popupTitle" style="font-size: 36px;">Game Win!</h2>
         <h2 style="margin-bottom: 64px;">Score : <div id="winScore" style="display: inline;"></div></h2>
