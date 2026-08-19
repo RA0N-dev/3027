@@ -61,13 +61,13 @@ h3 {
     color: #ffffff;
 }
 
-#score {
+#score, #best {
     font-size: 18px;
     font-weight: bolder;
     font-style: bold;
     color: #766e66
 }
-.dark #score{
+.dark #score, .dark #best {
     color: #ffffff
 }
 
@@ -1080,6 +1080,13 @@ h1,
 h2,
 h3 {
     transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+/* 저장해둔 다크 모드를 되살리는 것은 "전환"이 아니라 처음부터 그 색인 것이어야 한다.
+   이게 없으면 페이지를 열 때마다 흰색에서 검은색으로 넘어가는 연출이 재생된다.
+   game.js 가 첫 그림을 그린 뒤에 이 클래스를 뗀다. */
+.preload, .preload * {
+    transition: none !important;
 }
 
 /* --- 움직임 최소화 설정을 켠 사용자 --- */

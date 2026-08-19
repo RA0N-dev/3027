@@ -1,8 +1,16 @@
 // 저장된 판이 있으면 그대로 이어하고, 없으면 새 판을 깐다.
-window.onload = function () {
+// onload 가 아니라 DOMContentLoaded 인 이유: onload 는 사운드 파일까지 다 받은 뒤에야
+// 돌아서, 그동안 판이 비어 있는 채로 기다리게 된다. 판을 그리는 데는 DOM 만 있으면 된다.
+document.addEventListener("DOMContentLoaded", function () {
     if (loadGame()) { resumeGame(); }
     else { setGame(); }
-}
+
+    // 첫 그림이 끝난 뒤에 테마 전환 연출을 다시 켠다. 프레임을 두 번 기다리는 것은
+    // 한 번만 기다리면 아직 그리기 전이라 전환이 그대로 재생되기 때문이다.
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => { document.body.classList.remove("preload"); });
+    });
+});
 
 // 판 모양. -1은 판 바깥이라 타일이 놓이지 않는 칸이다.
 const BOARD_SHAPE = [[-1, -1, -1, 0, -1, -1, -1],
@@ -418,6 +426,9 @@ function silde(num) {
         addScore(1); // 옮겨진 타일이 있으면 출발 칸이 비므로 판이 꽉 찬 경우는 없다
         setNewTile();
         playScoreGain();
+        // 저장은 판이 실제로 바뀐 이 자리에서만 한다. 막힌 방향을 눌렀을 때는 남길 것이
+        // 없는데, 하필 판을 흔드는 그 순간에 쓰기가 끼어들면 애니메이션이 걸린다.
+        saveGame();
     }
     else {
         // 그 방향으로는 이미 다 밀려 있다는 것을 판을 흔들어 알려준다.
@@ -430,7 +441,6 @@ function silde(num) {
     // 성공한 이동은 항상 빈칸을 남기므로 이동 직후에만 검사하면 판정이 영영 성립하지 않고,
     // 반대로 이미 막힌 판에서는 어떤 이동도 성공하지 못하기 때문이다.
     if (!canMove()) { showGameOver(); }
-    saveGame();
 }
 
 function snapshotState() {
